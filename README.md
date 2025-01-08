@@ -1,12 +1,12 @@
-zuBPM Hardware Platform 
+ACMI Backend Platform 
 
-This is a custom designed hardware platform for the next gen rfBPM electroncs from the NSLS2 Diagnostics Group Using the Xilinx UltraScale+ technology.
+Gateware/Software for ACMI Backend.  Uses zuDFE board as the hardware platform.   Communicates with the control system via gigE using FreeRTOS and PSC.  Communicates with the 2 Front End ACMI Artix boards.  Contains embedded EVR.
 
 Uses the DESY FWK FPGA Firmware Framework https://fpgafw.pages.desy.de/docs-pub/fwk/index.html
 
 Clone with --recurse-submodules to get the FWK repos
 
-git clone --recurse-submodules https://github.com/NSLS-II/rfsoc-dfe
+git clone --recurse-submodules https://github.com/jamead/acmi-backend
 
 Setup Environment: make env (first time only)
 
