@@ -103,29 +103,7 @@ void set_bbaoffset(u32 axis, u32 msgVal) {
     }
 }
 
-void set_dmalen(u32 channel, u32 msgVal) {
 
-  switch(channel) {
-    case ADC:
-       Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_ADCBURSTLEN_REG, msgVal);
-       xil_printf("Setting ADC DMA length to %d\r\n",msgVal);
-	   break;
-	case TBT:
-	   Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_TBTBURSTLEN_REG, msgVal);
-       xil_printf("Setting TBT DMA length to %d\r\n",msgVal);
-	   break;
-    case FA:
-       Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_FABURSTLEN_REG, msgVal);
-       xil_printf("Setting FA DMA length to %d\r\n",msgVal);
-	   break;
-    default:
-       xil_printf("Invalid channel number\r\n");
-	   break;
-    }
-  //need to re-arm the DMA engine with the new length
-  dma_arm();
-
-}
 
 
 
@@ -237,71 +215,6 @@ reconnect:
                 soft_trig(MsgData);
                 break;
 
-			case DMA_TRIG_SRC_MSG1:
-				xil_printf("Set Trigger Source Message:   Value=%d\r\n",MsgData);
-                set_trigsrc(MsgData);
-                break;
-
-			case RF_ATTEN_MSG1:
-				xil_printf("RF Attenuator Message:   Value=%d\r\n",MsgData);
-                set_atten(MsgData);
-                break;
-
-			case KX_MSG1:
-				xil_printf("Kx Message:   Value=%d\r\n",MsgData);
-                set_kxky(HOR,MsgData);
-                break;
-
-			case KY_MSG1:
-				xil_printf("Ky Message:   Value=%d\r\n",MsgData);
-                set_kxky(VERT,MsgData);
-                break;
-
-            case BBA_XOFF_MSG1:
-            	xil_printf("BBA X Offset:   Value=%d\r\n",MsgData);
-            	set_bbaoffset(HOR,MsgData);
-                break;
-
-            case BBA_YOFF_MSG1:
-            	xil_printf("BBA Y Offset:   Value=%d\r\n",MsgData);
-            	set_bbaoffset(VERT,MsgData);
-                break;
-
-            case CHA_GAIN_MSG1:
-            	xil_printf("ChA Gain Message:   Value=%d\r\n",MsgData);
-                set_gain(CHA,MsgData);
-                break;
-
-            case CHB_GAIN_MSG1:
-            	xil_printf("ChB Gain Message:   Value=%d\r\n",MsgData);
-                set_gain(CHB,MsgData);
-                break;
-
-            case CHC_GAIN_MSG1:
-            	xil_printf("ChC Gain Message:   Value=%d\r\n",MsgData);
-                set_gain(CHC,MsgData);
-                break;
-
-            case CHD_GAIN_MSG1:
-            	xil_printf("ChD Gain Message:   Value=%d\r\n",MsgData);
-                set_gain(CHD,MsgData);
-                break;
-
-            case FINE_TRIG_DLY_MSG1:
-            	xil_printf("Fine Trig Delay Message:   Value=%d\r\n",MsgData);
-                //set_geo_dly(MsgData);
-                break;
-
-            case COARSE_TRIG_DLY_MSG1:
-            	xil_printf("Coarse Trig Delay Message:   Value=%d\r\n",MsgData);
-            	//set_coarse_dly(MsgData);
-            	break;
-
-            case TRIGTOBEAM_THRESH_MSG1:
-            	xil_printf("Trigger to Beam Threshold Message:   Value=%d\r\n",MsgData);
-            	//set_trigtobeam_thresh(MsgData);
-            	break;
-
 
             case EVENT_NO_MSG1:
             	xil_printf("DMA Event Number Message:   Value=%d\r\n",MsgData);
@@ -314,77 +227,13 @@ reconnect:
             	//set_fpleds(MsgData);
             	break;
 
-            case DMA_ADCLEN_MSG1:
-            	xil_printf("Setting DMA ADC Length:   Value=%d\r\n",MsgData);
-            	set_dmalen(ADC,MsgData);
-            	break;
-
-            case DMA_TBTLEN_MSG1:
-             	xil_printf("Setting DMA TBT Length:   Value=%d\r\n",MsgData);
-             	set_dmalen(TBT,MsgData);
-             	break;
-
-            case DMA_FALEN_MSG1:
-             	xil_printf("Setting DMA FA Length:   Value=%d\r\n",MsgData);
-             	set_dmalen(FA,MsgData);
-             	break;
 
             case EVENT_SRC_SEL_MSG1:
               	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
               	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
               	break;
 
-            case ADC_IDLY_MSG1:
-            	xil_printf("Setting ADC IDLY:  Value=%d\r\n",MsgData);
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_IDLYWVAL_REG, MsgData);
-            	//strobe the idly value into all 16 idly registers
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_IDLYSTR_REG, 0xFFFF);
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_IDLYSTR_REG, 0);
-            	usleep(10);
-            	rdval = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_IDLYCHARVAL_REG);
-            	xil_printf("ChA IDLY rval=%d\r\n",rdval);
-            	rdval = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_IDLYCHBRVAL_REG);
-            	xil_printf("ChB IDLY rval=%d\r\n",rdval);
-            	rdval = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_IDLYCHCRVAL_REG);
-            	xil_printf("ChC IDLY rval=%d\r\n",rdval);
-            	rdval = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_IDLYCHDRVAL_REG);
-            	xil_printf("ChD IDLY rval=%d\r\n",rdval);
-           	    break;
 
-
-            case ADC_MMCM0_MSG1:
-            	if (MsgData == 1) {
-            		xil_printf("Setting ADC0 MMCM FCO Delay\r\n");
-            	    Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_FCOMMCM_REG, 1);
-            	    Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_FCOMMCM_REG, 0);
-            	}
-                break;
-
-            case ADC_MMCM1_MSG1:
-            	if (MsgData == 1) {
-            		xil_printf("Setting ADC1 MMCM FCO Delay\r\n");
-            	    Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_FCOMMCM_REG, 2);
-            	    Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_FCOMMCM_REG, 0);
-            	}
-                break;
-
-            case ADC_SPI_MSG1:
-            	regAddr = (MsgData & 0xFF00) >> 8;
-            	regVal = (MsgData & 0xFF);
-            	xil_printf("Programming ADC SPI Register  Addr: %x   Data: %x \r\n", regAddr, regVal);
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_SPI_REG, regAddr<<8 | regVal);
-            	usleep(1000);
-            	//read back
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_SPI_REG, 0x8000 | regAddr<<8 | regVal);
-            	usleep(1000);
-            	rdbk = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_SPI_REG);
-            	xil_printf("SPI Read Back ADC0 Reg: %d = %x\r\n",regAddr,rdbk);
-            	usleep(1000);
-            	Xil_Out32(XPAR_M_AXI_BASEADDR + ADC_SPI_REG, 0x10000 | 0x8000 | regAddr<<8 | regVal);
-            	usleep(1000);
-            	rdbk = Xil_In32(XPAR_M_AXI_BASEADDR + ADC_SPI_REG);
-            	xil_printf("SPI Read Back ADC1 Reg: %d = %x\r\n",regAddr,rdbk);
-                break;
 
             default:
             	xil_printf("Msg not supported yet...\r\n");

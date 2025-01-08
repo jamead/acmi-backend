@@ -218,13 +218,6 @@ void main_thread(void *p)
     sys_thread_new("psc_cntrl_thread", psc_control_thread, 0, THREAD_STACKSIZE, 3);
 
 
-     // Delay for 100 ms
-     vTaskDelay(pdMS_TO_TICKS(100));
-     // Start the PSC Control Thread.  Handles incoming commands from IOC
-     xil_printf("\r\n");
-     sys_thread_new("read_thermistors", read_thermistor_thread, 0, THREAD_STACKSIZE, 0);
-
-
 	//setup an Uptime Timer
 	xUptimeTimer = xTimerCreate("UptimeTimer", pdMS_TO_TICKS(1000), pdTRUE, (void *)0, vUptimeTimerCallback);
 	// Check if the timer was created successfully
@@ -281,40 +274,15 @@ s32 init_sysmon() {
 int main()
 {
 
-    u32 ts_s, ts_ns;
-    float temp1, temp2;
+    u32 ts_s, ts_ns, i;
 
 	xil_printf("zuBPM ...\r\n");
     print_firmware_version();
 
-	prog_ad9510();
-	ltc2195_init();
+
 	init_i2c();
 	init_sysmon();
     write_lmk61e2();
-
-    setup_thermistors(0);
-    setup_thermistors(1);
-    setup_thermistors(2);
-
-    /*
-    xil_printf("Reading Thermistors...\r\n");
-    read_thermistors(0,&temp1,&temp2);
-    printf("Chip0:  = %5.3f  %5.3f  \r\n",temp1,temp2);
-    read_thermistors(1,&temp1,&temp2);
-    printf("Chip1:  = %5.3f  %5.3f  \r\n",temp1,temp2);
-
-    Xil_Out32(XPAR_M_AXI_BASEADDR + THERM_SEL_REG, 0x2);
-    read_thermistors(2,&temp1,&temp2);
-    printf("Chip2:  = %5.3f  %5.3f  \r\n",temp1,temp2);
-    */
-
-    //read AFE temperature from i2c bus
-    i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x40);
-    temp1 = read_i2c_temp(BRDTEMP0_ADDR);
-    temp2 = read_i2c_temp(BRDTEMP2_ADDR);
-    printf("AFE:  = %5.3f  %5.3f  \r\n",temp1,temp2);
-    sleep(1);
 
 
 	//EVR reset
@@ -323,10 +291,12 @@ int main()
     usleep(1000);
 
     //read Timestamp
-    ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
-    ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
-    xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
-
+    for (i=0;i<10;i++) {
+      ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
+      ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
+      xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
+      sleep(1);
+    }
 
 
     // TODO:  This doesn't work
