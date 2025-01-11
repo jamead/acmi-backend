@@ -21,7 +21,11 @@ proc setSources {} {
   lappend Sources {"../hdl/ps_io.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/acmi_package.vhd" "VHDL 2008"} 
   lappend Sources {"../hdl/stretch.vhd" "VHDL 2008"} 
-  lappend Sources {"../hdl/gth_artix_wrapper.vhd" "VHDL 2008"} 
+
+  lappend Sources {"../hdl/gth_artix_io.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/gth_artix_wrapper.vhd" "VHDL 2008"}   
+  lappend Sources {"../hdl/artix_cntrl.vhd" "VHDL 2008"} 
+  lappend Sources {"../hdl/artix_data_rdout.vhd" "VHDL 2008"}  
   
   lappend Sources {"../hdl/evr/evr_top.vhd" "VHDL 2008"}  
   lappend Sources {"../hdl/evr/EventReceiverChannel.v" "Verilog"}  
@@ -64,6 +68,8 @@ proc doOnCreate {} {
   source ${TclPath}/evr_gth.tcl
   source ${TclPath}/gth_artix.tcl
   source ${TclPath}/gth_freerun_clk.tcl
+  source ${TclPath}/wvfm_fifo.tcl
+  
 
   addSources "Sources" 
   

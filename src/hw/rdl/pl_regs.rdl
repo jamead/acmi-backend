@@ -77,7 +77,28 @@ addrmap pl_regs {
 
  
  
-
+reg {
+    desc="Artix SPI data";
+    default sw = rw;
+    default hw = r;
+    field {} data[32] = 0;
+  } artix_spi_data @0x20;
+  
+reg {
+    desc="Artix SPI address";
+    default sw = rw;
+    default hw = r;    
+    field {} data[32] = 0;
+  } artix_spi_addr @0x24; 
+  
+ reg {
+    desc="Artix SPI we";
+    default sw = rw;
+    default hw = r;    
+    field {} data[1] = 0;
+  } artix_spi_we @0x28; 
+   
+ 
  
 
  
@@ -86,7 +107,7 @@ reg {
     default sw = rw;
     default hw = r;
     field {} data[1] = 0;
-  } evr_reset @0xBC;
+  } evr_reset @0x30;
   
  
  
@@ -95,7 +116,7 @@ reg {
     default sw = rw;
     default hw = r;
     field {} val[8];
-  } FP_LEDS @0x140;
+  } FP_LEDS @0x40;
 
 
 
@@ -106,49 +127,49 @@ reg {
     default sw = r;
     default hw = w;
     field {} val[32];
-  } ts_ns @0x150;
+  } ts_ns @0x50;
 
 reg {
     desc="Timestamp (s)";
     default sw = r;
     default hw = w;
     field {} val[32];
-  } ts_s @0x154;
+  } ts_s @0x54;
   
 reg {
     desc="Latched Trigger Timestamp (ns)";
     default sw = r;
     default hw = w;
     field {} val[32];
-  } lat_ts_ns @0x158;
+  } lat_ts_ns @0x58;
 
 reg {
     desc="Latched Trigger Timestamp (s)";
     default sw = r;
     default hw = w;
     field {} val[32];
-  } lat_ts_s @0x15C;  
+  } lat_ts_s @0x5C;  
 
 reg {
     desc="DMA Trigger Event Number";
     default sw = rw;
     default hw = r;
     field {} val[8];
-  } dma_trig_eventno @0x160;  
+  } dma_trig_eventno @0x60;  
 
 reg {
     desc="DMA Trigger Delay";
     default sw = rw;
     default hw = r;
     field {} val[32];
-  } dma_trig_delay @0x164;  
+  } dma_trig_delay @0x64;  
 
  reg {
     desc="Internal clock mode (tbt,fa,sa trig source) (0=int counters, 1=evr)";
     default sw = rw;
     default hw = r;
     field {} val[1];
-  } event_src_sel @0x168;  
+  } event_src_sel @0x68;  
  
  
  
@@ -160,14 +181,14 @@ reg {
     default hw = r;
     default swmod=true; 
     field {} data[1];
-  } chainA_fifo_streamenb @0x200;
+  } chainA_fifo_streamenb @0x100;
      
 reg {
     desc="ChainA FIFO Reset";
     default sw = rw;
     default hw = r;
     field {} data[1];
-  } chainA_fifo_reset @0x204;
+  } chainA_fifo_reset @0x104;
    
 reg {
     desc="ChainA FIFO Data Out";
@@ -175,14 +196,14 @@ reg {
     default hw = w;
     default swacc=true;   
     field {} data[32];
-  } chainA_fifo_data @0x208;
+  } chainA_fifo_data @0x108;
    
 reg {
     desc="ChainA FIFO Word Count";
     default sw = r;
     default hw = w;
-    field {} data[32];
-  } chainA_fifo_rdcnt @0x20C;
+    field {} data[16];
+  } chainA_fifo_rdcnt @0x10C;
    
 
 

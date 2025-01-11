@@ -23,8 +23,8 @@ entity ps_io is
      m_axi4_m2s        : in t_pl_regs_m2s;
      m_axi4_s2m        : out t_pl_regs_s2m;   
      	
-	 reg_o_chaina_fifo : out t_reg_o_chaina_fifo_rdout;
-	 reg_i_chaina_fifo : in  t_reg_i_chaina_fifo_rdout; 
+	 reg_o_chaina      : out t_reg_o_chaina;
+	 reg_i_chaina      : in  t_reg_i_chaina; 
 
 	 reg_o_evr         : out t_reg_o_evr;
 	 reg_i_evr         : in  t_reg_i_evr;
@@ -51,16 +51,20 @@ begin
 
 fp_leds <= reg_o.FP_LEDS.val.data;
 
-reg_o_chaina_fifo.enb <= reg_o.chaina_fifo_streamenb.data.swmod;
-reg_o_chaina_fifo.rst <= reg_o.chaina_fifo_reset.data.data(0);
-reg_o_chaina_fifo.rdstr <= reg_o.chaina_fifo_data.data.swacc;
-reg_i.chaina_fifo_rdcnt.data.data <= reg_i_chaina_fifo.rdcnt;
-reg_i.chaina_fifo_data.data.data <= reg_i_chaina_fifo.dout;
+reg_o_chaina.fifo_enb <= reg_o.chaina_fifo_streamenb.data.swmod;
+reg_o_chaina.fifo_rst <= reg_o.chaina_fifo_reset.data.data(0);
+reg_o_chaina.fifo_rdstr <= reg_o.chaina_fifo_data.data.swacc;
+reg_i.chaina_fifo_rdcnt.data.data <= reg_i_chaina.fifo_rdcnt;
+reg_i.chaina_fifo_data.data.data <= reg_i_chaina.fifo_dout;
 
-reg_i.ts_ns.val.data <= reg_i_evr.ts_ns; --x"12345678";
-reg_i.ts_s.val.data <= reg_i_evr.ts_s; --x"deadbeef";
-reg_i.lat_ts_ns.val.data <= reg_i_evr.lat_ts_ns; --x"0123face";
-reg_i.lat_ts_s.val.data <= reg_i_evr.lat_ts_s; --x"ba5eba11";
+reg_o_chaina.spi_data <= reg_o.artix_spi_data.data.data; 
+reg_o_chaina.spi_addr <= reg_o.artix_spi_addr.data.data;
+reg_o_chaina.spi_we <= reg_o.artix_spi_we.data.data(0);
+
+reg_i.ts_ns.val.data <= reg_i_evr.ts_ns; 
+reg_i.ts_s.val.data <= reg_i_evr.ts_s; 
+reg_i.lat_ts_ns.val.data <= reg_i_evr.lat_ts_ns; 
+reg_i.lat_ts_s.val.data <= reg_i_evr.lat_ts_s; 
 
 reg_o_evr.reset <= reg_o.evr_reset.data.data(0);
 reg_o_evr.dma_trigno <= reg_o.dma_trig_eventno.val.data;

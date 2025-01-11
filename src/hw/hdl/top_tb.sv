@@ -31,11 +31,18 @@ module top_tb;
     reg [31:0] read_data; 
     wire [7:0] leds; 
     reg resp; 
+    
+    reg gth_fe_refclk_p;
+    reg gth_fe_refclk_n;
 
 
     initial  
     begin        
         tb_ACLK = 1'b0; 
+        tb_ARESETn = 0;
+        gth_fe_refclk_p = 0;
+        gth_fe_refclk_n = 1;    
+        
     end 
 
      
@@ -44,6 +51,12 @@ module top_tb;
     // Simple Clock Generator 
     //------------------------------------------------------------------------ 
     always #10 tb_ACLK = !tb_ACLK; 
+    
+    // Clock Generation for gth_fe_refclk_p and gth_fe_refclk_n (156.25 MHz)
+    always #3.2 begin
+        gth_fe_refclk_p = ~gth_fe_refclk_p;
+        gth_fe_refclk_n = ~gth_fe_refclk_n;
+    end
 
         
 
@@ -67,22 +80,27 @@ module top_tb;
         `ZYNQ_VIP.fpga_soft_reset(32'h0); 
         #2000 ; 
 
-
-        //Write the adc dly value
+        #50000;
+        //Write the artix spi
         `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h1, resp);      
-        #2000
-        `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h2, resp);    
-        #2000
-        `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h3, resp);             
-        #2000
-
-        //Write the adc dly strobe
-        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h0, resp);      
-        #2000
-        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h1, resp);    
-        #2000
-        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h0, resp);             
- 
+        #200
+        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h3, resp);    
+        #200
+        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h1, resp);    
+        #200  
+        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h0, resp);         
+            
+        #10000;  
+         //Write the artix spi
+        `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h2, resp);      
+        #200
+        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h5, resp);    
+        #200
+        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h1, resp);    
+        #200  
+        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h0, resp);         
+            
+        #50000;
         //This drives the LEDs on the GPIO output 
        `ZYNQ_VIP.write_data(32'hA0000140,4, 32'h55, resp); 
         `ZYNQ_VIP.read_data(32'hA0000140,4, read_data, resp); 
@@ -109,7 +127,14 @@ module top_tb;
     assign temp_rstn = tb_ARESETn; 
 
  
-top dut (); 
+   top dut (
+        .gth_fe_refclk_p(gth_fe_refclk_p),
+        .gth_fe_refclk_n(gth_fe_refclk_n)
+        // Connect other DUT ports
+    ); 
+ 
+ 
+//top dut (); 
 
   
 

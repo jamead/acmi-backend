@@ -14,7 +14,7 @@ use xil_defaultlib.acmi_package.ALL;
 
 entity top is
 generic(
-    FPGA_VERSION			: integer := 9;
+    FPGA_VERSION			: integer := 1;
     SIM_MODE				: integer := 0
     );
   port (  
@@ -67,9 +67,8 @@ architecture behv of top is
   signal reg_o_evr       : t_reg_o_evr;
   signal reg_i_evr       : t_reg_i_evr;
   
-  signal reg_i_chaina_fifo : t_reg_i_chaina_fifo_rdout;
-  signal reg_o_chaina_fifo : t_reg_o_chaina_fifo_rdout;
-
+  signal reg_i_chaina    : t_reg_i_chaina;
+  signal reg_o_chaina    : t_reg_o_chaina;
    
   
   signal evr_tbt_trig    : std_logic;
@@ -161,50 +160,30 @@ reg_i_evr.ts_s <= evr_ts(63 downto 32);
 reg_i_evr.ts_ns <= evr_ts(31 downto 0);
 
 
---generate 25MHz clock for GTH FE transceivers
-gth_clk_gen : entity work.gth_freerun_clk
-  port map ( 
-   clk_in1 => pl_clk0,
-   clk_out1 => gth_freerun_clk,            
-   reset => pl_reset,
-   locked => gth_clk_plllocked
- );
 
 
-
-
-artix_link: entity work.gth_artix_wrapper
-  port map (
-    sys_clk => pl_clk0, 
-    gth_freerun_clk => gth_freerun_clk, 
+chaina_io: entity work.gth_artix_io
+  port map(
+  sys_clk => pl_clk0, 
+  sys_rst => pl_reset,   
+  gth_reset => reg_o_evr.reset,
   
-    sys_rst => pl_reset, 
-    gth_reset => reg_o_evr.reset,  
-    
-    gth_txusr_clk => gth_txusr_clk,   
-    gth_tx_data  => x"01234567", --gth_tx_data,  
-    gth_tx_data_enb => '0', --gth_tx_data_enb, 
+  reg_o => reg_o_chaina,  
+  reg_i => reg_i_chaina,       
   
-    gth_rxusr_clk => gth_rxusr_clk,   
-    gth_rx_data  => gth_rx_data,  
-    gth_rx_data_enb => gth_rx_data_enb,   
+  gth_txusr_clk => gth_txusr_clk, 
+  gth_rxusr_clk => gth_rxusr_clk, 
   
-    gth_refclk_p => gth_fe_refclk_p, 
-    gth_refclk_n => gth_fe_refclk_n, 
+  gth_refclk_p => gth_fe_refclk_p, 
+  gth_refclk_n => gth_fe_refclk_n, 
 
-    gth_rx_p => gth_fe0_rx_p, 
-    gth_rx_n => gth_fe0_rx_n, 
-    gth_tx_p => gth_fe0_tx_p, 
-    gth_tx_n => gth_fe0_tx_n 
+  gth_rx_p => gth_fe0_rx_p, 
+  gth_rx_n => gth_fe0_rx_n, 
+  gth_tx_p => gth_fe0_tx_p, 
+  gth_tx_n => gth_fe0_tx_n   
 
 );  
-
-
-
-
-
-
-
+ 
 
 
 --embedded event receiver
@@ -246,8 +225,8 @@ ps_pl: entity work.ps_io
     m_axi4_m2s => m_axi4_m2s, 
     m_axi4_s2m => m_axi4_s2m, 
     fp_leds => ps_leds,   
-    reg_o_chaina_fifo => reg_o_chaina_fifo, 
-	reg_i_chaina_fifo => reg_i_chaina_fifo,
+    reg_o_chaina => reg_o_chaina, 
+	reg_i_chaina => reg_i_chaina,
 	reg_o_evr => reg_o_evr, 
 	reg_i_evr => reg_i_evr
           

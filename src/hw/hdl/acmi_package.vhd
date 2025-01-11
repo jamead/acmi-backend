@@ -11,16 +11,19 @@ package acmi_package is
 
 
 
-type t_reg_i_chaina_fifo_rdout is record
-   dout     : std_logic_vector(31 downto 0);
-   rdcnt    : std_logic_vector(31 downto 0); 
-end record t_reg_i_chaina_fifo_rdout;
+type t_reg_i_chaina is record
+   fifo_dout     : std_logic_vector(31 downto 0);
+   fifo_rdcnt    : std_logic_vector(15 downto 0); 
+end record t_reg_i_chaina;
 
-type t_reg_o_chaina_fifo_rdout is record
-   enb      : std_logic;
-   rst      : std_logic;
-   rdstr    : std_logic;
-end record t_reg_o_chaina_fifo_rdout;
+type t_reg_o_chaina is record
+   spi_data      : std_logic_vector(31 downto 0);
+   spi_addr      : std_logic_vector(31 downto 0);
+   spi_we        : std_logic;
+   fifo_enb      : std_logic;
+   fifo_rst      : std_logic;
+   fifo_rdstr    : std_logic;
+end record t_reg_o_chaina;
 
 
 
