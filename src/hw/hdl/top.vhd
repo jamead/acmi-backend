@@ -27,6 +27,15 @@ generic(
     gth_evr_rx_p            : in std_logic;
     gth_evr_rx_n            : in std_logic;   
     
+    --artix transceiver
+    gth_fe_refclk_p         : in std_logic;
+    gth_fe_refclk_n         : in std_logic;
+    gth_fe0_tx_p            : out std_logic;
+    gth_fe0_tx_n            : out std_logic;
+    gth_fe0_rx_p            : in std_logic;
+    gth_fe0_rx_n            : in std_logic;    
+    
+    
     
     sfp_led                 : out std_logic_vector(11 downto 0);
     sfp_rxlos               : in std_logic_vector(5 downto 0);
@@ -45,9 +54,11 @@ architecture behv of top is
   
   signal pl_clk0         : std_logic;
   signal pl_clk1         : std_logic;
-  signal adc_clk         : std_logic;
+  signal gth_freerun_clk : std_logic;
   signal pl_resetn       : std_logic;
   signal pl_reset        : std_logic;
+  signal gth_clk_plllocked : std_logic;
+  
   signal ps_leds         : std_logic_vector(7 downto 0);
   
   signal m_axi4_m2s      : t_pl_regs_m2s;
@@ -83,6 +94,13 @@ architecture behv of top is
   signal ps_fpled_stretch: std_logic;
   signal dma_trig        : std_logic;
 
+  signal gth_tx_data     : std_logic_vector(31 downto 0);
+  signal gth_tx_data_enb : std_logic;
+  signal gth_txusr_clk   : std_logic;
+   
+  signal gth_rx_data     : std_logic_vector(31 downto 0);
+  signal gth_rx_data_enb : std_logic;
+  signal gth_rxusr_clk   : std_logic; 
 
 
 
@@ -98,7 +116,7 @@ begin
 
 
 dbg(0) <= pl_clk0;
-dbg(1) <= '0';
+dbg(1) <= gth_freerun_clk;
 dbg(2) <= '0';
 dbg(3) <= '0';
 dbg(4) <= '0';
@@ -121,8 +139,8 @@ dbg(19) <= fp_in(3);
 
 fp_out(0) <= pl_clk0;
 fp_out(1) <= evr_rcvd_clk; --pl_clk1; --adc_clk_in;
-fp_out(2) <= '0';
-fp_out(3) <= '0'; 
+fp_out(2) <= gth_txusr_clk; --'0';
+fp_out(3) <= gth_rxusr_clk; --'0'; 
 
 fp_led(7) <= '0';
 fp_led(6) <= '0'; 
@@ -131,7 +149,7 @@ fp_led(4) <= '0';
 fp_led(3) <= '0';
 fp_led(2) <= '0'; 
 fp_led(1) <= '0';
-fp_led(0) <= '0';
+fp_led(0) <= gth_clk_plllocked;
 
 
 
@@ -141,6 +159,49 @@ pl_reset <= not pl_resetn;
 
 reg_i_evr.ts_s <= evr_ts(63 downto 32);
 reg_i_evr.ts_ns <= evr_ts(31 downto 0);
+
+
+--generate 25MHz clock for GTH FE transceivers
+gth_clk_gen : entity work.gth_freerun_clk
+  port map ( 
+   clk_in1 => pl_clk0,
+   clk_out1 => gth_freerun_clk,            
+   reset => pl_reset,
+   locked => gth_clk_plllocked
+ );
+
+
+
+
+artix_link: entity work.gth_artix_wrapper
+  port map (
+    sys_clk => pl_clk0, 
+    gth_freerun_clk => gth_freerun_clk, 
+  
+    sys_rst => pl_reset, 
+    gth_reset => reg_o_evr.reset,  
+    
+    gth_txusr_clk => gth_txusr_clk,   
+    gth_tx_data  => x"01234567", --gth_tx_data,  
+    gth_tx_data_enb => '0', --gth_tx_data_enb, 
+  
+    gth_rxusr_clk => gth_rxusr_clk,   
+    gth_rx_data  => gth_rx_data,  
+    gth_rx_data_enb => gth_rx_data_enb,   
+  
+    gth_refclk_p => gth_fe_refclk_p, 
+    gth_refclk_n => gth_fe_refclk_n, 
+
+    gth_rx_p => gth_fe0_rx_p, 
+    gth_rx_n => gth_fe0_rx_n, 
+    gth_tx_p => gth_fe0_tx_p, 
+    gth_tx_n => gth_fe0_tx_n 
+
+);  
+
+
+
+
 
 
 
@@ -228,7 +289,7 @@ system_i: component system
 --stretch the sa_trig signal so can be seen on LED
 sa_led : entity work.stretch
   port map (
-	clk => adc_clk,
+	clk => pl_clk0,
 	reset => pl_reset, 
 	sig_in => sa_trig, 
 	len => 3000000, -- ~25ms;

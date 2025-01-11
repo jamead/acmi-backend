@@ -283,6 +283,7 @@ int main()
 	init_i2c();
 	init_sysmon();
     write_lmk61e2();
+    write_si5347();
 
 
 	//EVR reset

@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "FreeRTOS.h"
 #include "task.h"
+#include "../inc/Si5347-RevD-zubpm-Registers.h"
+
 
 
 extern XIicPs IicPsInstance;			/* Instance of the IIC Device */
@@ -200,7 +202,6 @@ void write_lmk61e2()
    u8 buf[4] = {0};
    u32 regval, i;
 
-
    u32 num_values = sizeof(lmk61e2_values) / sizeof(lmk61e2_values[0]);  // Get the number of elements in the array
 
    i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x20);
@@ -212,10 +213,52 @@ void write_lmk61e2()
       printf("LMK61e2 Write = 0x%x\t    B0 = %x    B1 = %x\n",regval, buf[0], buf[1]);
    };
 
+}
+
+
+
+void write_si5347()
+{
+    u32 i;
+	u8 data[2], page, newpage;
+
+    i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x02);
+
+    // Write all 734 Register values from the table above to the
+
+	newpage = 0x00;
+	data[0] = 0x01; //page register
+	data[1] = 0x00; //set page zero
+	//write(file,data,2);
+	i2c_write(data,2,0x6C);
+
+	for(i=0;i<SI5347_REVD_REG_CONFIG_NUM_REGS;i=i+1){
+		// routine keeps track of page change
+		// places 300 msec delay between 3rd and 4th register write for preamble
+		page = si5347_revd_registers[i].address >> 8;
+		if (page != newpage){
+				newpage = page;
+				data[0] = 0x01; //page register
+				data[1] = page; //set page zero
+				//write(file,data,2);
+				i2c_write(data,2,0x6C);
+				usleep(1000);
+		}
+	    data[0] = si5347_revd_registers[i].address & 0x00FF;
+	    data[1] = si5347_revd_registers[i].value;
+	    xil_printf("Writing si5347:   Addr=%x   Data=%x\r\n",data[0],data[1]);
+
+	    //write(file,data,2);
+	    i2c_write(data,2,0x6C);
+		if (i==2) usleep(300000);
+	    usleep(1000);
+	}
+
 
 
 
 }
+
 
 
 

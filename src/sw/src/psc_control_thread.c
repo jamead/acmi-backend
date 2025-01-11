@@ -146,8 +146,8 @@ void psc_control_thread()
 	int RECV_BUF_SIZE = 1024;
 	char buffer[RECV_BUF_SIZE];
 	int n, *bufptr, numpackets=0;
-    u32 MsgAddr, MsgData, rdval;
-    u32 rdbk, regAddr, regVal;
+    u32 MsgAddr, MsgData;
+
 
 
 
