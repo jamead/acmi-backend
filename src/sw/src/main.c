@@ -266,6 +266,51 @@ s32 init_sysmon() {
 }
 
 
+void read_artix_fifo() {
+
+    int i;
+
+    int regval, wordcnt;
+
+
+    wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+    xil_printf("Num FIFO Words: %d\r\n", wordcnt);
+
+    for (i=0;i<20;i++) {
+        //chA and chB are in a single 32 bit word
+    	regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
+    	xil_printf("%x\r\n", regval);
+
+    }
+
+    xil_printf("Resetting FIFO...\r\n");
+    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 1);
+    usleep(1);
+    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 0);
+    usleep(10);
+    
+    wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+    xil_printf("Num FIFO Words: %d\r\n", wordcnt);
+
+
+}
+
+
+
+
+
+
+
+
+
+void write_artix_spi()
+{
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x0);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+
+}
 
 
 
@@ -274,7 +319,7 @@ s32 init_sysmon() {
 int main()
 {
 
-    u32 ts_s, ts_ns, i;
+    u32 ts_s, ts_ns, i, wordcnt;
 
 	xil_printf("zuBPM ...\r\n");
     print_firmware_version();
@@ -291,11 +336,29 @@ int main()
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 2);
     usleep(1000);
 
+    //Reset the Artix receive FIFO
+    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 1);
+    usleep(1);
+    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 0);
+    usleep(10);
+
+    //Enable the Artix receive FIFO
+    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_STREAMENB_REG, 0);
+    sleep(1);
+    
+    //Read Number of words in FIFO
+    wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+    xil_printf("Num FIFO Words: %d\r\n", wordcnt);
+
+
     //read Timestamp
-    for (i=0;i<10;i++) {
+    while (1) { //for (i=0;i<100;i++) {
       ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
       ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
       xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
+      write_artix_spi();
+      read_artix_fifo();
+
       sleep(1);
     }
 

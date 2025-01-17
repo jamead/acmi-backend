@@ -29,79 +29,14 @@ void set_fpleds(u32 msgVal)  {
 }
 
 
-void soft_trig(u32 msgVal) {
-	Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_SOFTTRIG_REG, msgVal);
-}
-
-void set_atten(u32 msgVal) {
-    xil_printf("Setting RF attenuator to %d dB\r\n",msgVal);
-    Xil_Out32(XPAR_M_AXI_BASEADDR + RF_DSA_REG, msgVal*4);
-}
-
-void set_geo_dly(u32 msgVal) {
-    // the Geo delay is the same as tbt_gate delay, set them both for now
-	Xil_Out32(XPAR_M_AXI_BASEADDR + FINE_TRIG_DLY_REG, msgVal);
-	Xil_Out32(XPAR_M_AXI_BASEADDR + TBT_GATEDLY_REG, msgVal);
-}
 
 
-void set_coarse_dly(u32 msgVal) {
-	Xil_Out32(XPAR_M_AXI_BASEADDR + COARSE_TRIG_DLY_REG, msgVal);
-}
-
-
-
-void set_trigtobeam_thresh(int msgVal) {
-	Xil_Out32(XPAR_M_AXI_BASEADDR + TRIGTOBEAM_THRESH_REG, msgVal);
-}
 
 
 void set_eventno(u32 msgVal) {
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_DMA_TRIGNUM_REG, msgVal);
 }
 
-void set_trigsrc(u32 msgVal) {
-    if (msgVal == 0) {
-        xil_printf("Setting Trigger Source to EVR\r\n");
-        Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_TRIGSRC_REG, msgVal);
-    }
-    else if (msgVal == 1) {
-	    xil_printf("Setting Trigger Source to INT (soft)\r\n");
-        Xil_Out32(XPAR_M_AXI_BASEADDR + DMA_TRIGSRC_REG, msgVal);
-    }
-    else
-        xil_printf("Invalid Trigger Source\r\n");
-
-}
-
-
-
-void set_kxky(u32 axis, u32 msgVal) {
-
-    if (axis == HOR)	{
-       xil_printf("Setting Kx to %d nm\r\n",msgVal);
-       Xil_Out32(XPAR_M_AXI_BASEADDR + KX_REG, msgVal);
-    }
-    else {
-       xil_printf("Setting Ky to %d nm\r\n",msgVal);
-       Xil_Out32(XPAR_M_AXI_BASEADDR + KY_REG, msgVal);
-
-    }
-}
-
-
-void set_bbaoffset(u32 axis, u32 msgVal) {
-
-    if (axis == HOR)	{
-       xil_printf("Setting BBA X to %d nm\r\n",msgVal);
-       Xil_Out32(XPAR_M_AXI_BASEADDR + BBA_XOFF_REG, msgVal);
-
-    }
-    else {
-       xil_printf("Setting BBA Y to %d nm\r\n",msgVal);
-       Xil_Out32(XPAR_M_AXI_BASEADDR + BBA_YOFF_REG, msgVal);
-    }
-}
 
 
 
@@ -109,30 +44,7 @@ void set_bbaoffset(u32 axis, u32 msgVal) {
 
 
 
-void set_gain(u32 channel, u32 msgVal) {
 
-switch(channel) {
-    case CHA:
-       Xil_Out32(XPAR_M_AXI_BASEADDR + CHA_GAIN_REG, msgVal);
-       xil_printf("Setting ChA gain to %d \r\n",msgVal);
-	   break;
-	case CHB:
-	   Xil_Out32(XPAR_M_AXI_BASEADDR + CHB_GAIN_REG, msgVal);
-       xil_printf("Setting ChB gain to %d\r\n",msgVal);
-	   break;
-    case CHC:
-       Xil_Out32(XPAR_M_AXI_BASEADDR + CHC_GAIN_REG, msgVal);
-       xil_printf("Setting ChC gain to %d\r\n",msgVal);
-	   break;
-	case CHD:
-	   Xil_Out32(XPAR_M_AXI_BASEADDR + CHD_GAIN_REG, msgVal);
-       xil_printf("Setting ChD gain to %d\r\n",msgVal);
-	   break;
-    default:
-       xil_printf("Invalid gain channel number\r\n");
-	   break;
-    }
-}
 
 
 
@@ -212,7 +124,7 @@ reconnect:
         switch(MsgAddr) {
 			case SOFT_TRIG_MSG1:
 				xil_printf("Soft Trigger Message:   Value=%d\r\n",MsgData);
-                soft_trig(MsgData);
+
                 break;
 
 

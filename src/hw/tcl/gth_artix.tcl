@@ -67,7 +67,7 @@ set_property -dict [list \
   CONFIG.CHANNEL_ENABLE {X0Y8} \
   CONFIG.ENABLE_OPTIONAL_PORTS {rxpolarity_in cpllfbclklost_out cplllock_out cpllrefclklost_out} \
   CONFIG.FREERUN_FREQUENCY {25} \
-  CONFIG.RX_COMMA_ALIGN_WORD {2} \
+  CONFIG.RX_COMMA_ALIGN_WORD {4} \
   CONFIG.RX_COMMA_M_ENABLE {true} \
   CONFIG.RX_COMMA_P_ENABLE {true} \
   CONFIG.RX_DATA_DECODING {8B10B} \
