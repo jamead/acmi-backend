@@ -53,26 +53,25 @@ void Host2NetworkConvWvfm(char *inbuf, int len) {
 }
 
 
+void soft_trig_artix()
+{
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x0);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+
+}
 
 
 
 
 
 
-void ReadLiveADCWvfm(char *msg) {
+void ReadChainA(char *msg) {
 
     int i;
-    u16 *msg_u16ptr;
     u32 *msg_u32ptr;
-    int regval;
-    s16 cha,chb,chc,chd;
-
-    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_STREAMENB_REG, 1);
-    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_STREAMENB_REG, 0);
-    usleep(10000);
-    //xil_printf("Reading ADC FIFO...\r\n");
-    //regval = Xil_In32(XPAR_M_AXI_BASEADDR + ADCFIFO_CNT_REG);
-    //xil_printf("\tWords in ADC FIFO = %d\r\n",regval);
+    u32 regval, wordcnt, pollcnt;
 
     //write the PSC Header
      msg_u32ptr = (u32 *)msg;
@@ -81,33 +80,41 @@ void ReadLiveADCWvfm(char *msg) {
      msg[2] = 0;
      msg[3] = (short int) MSGID51;
      *++msg_u32ptr = htonl(MSGID51LEN); //body length
+     msg_u32ptr++;
+
+
+     pollcnt = 0;
+     xil_printf("Read Artix FIFO...\r\n");
+     do {
+     	wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+        usleep(1000);
+        //xil_printf("PollCnt: %d\r\n", pollcnt);
+     	pollcnt++;
+     } while ((wordcnt == 0) && (pollcnt < 5000));
+
+     xil_printf("PollCnt: %d     Num FIFO Words: %d\r\n", pollcnt, wordcnt);
+
+     if (wordcnt > 16000) {
+       for (i=0;i<16258;i++) {
+        //read FIFO
+     	regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
+     	if (i<40)
+     	  xil_printf("%d:  %x\r\n", i*4,regval);
+     	*msg_u32ptr++ = regval;
+       }
+     }
+
+     xil_printf("Resetting FIFO...\r\n");
+     Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 1);
+     usleep(1);
+     Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 0);
+     usleep(10);
+
+     wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+     xil_printf("Num FIFO Words: %d\r\n", wordcnt);
 
 
 
-    msg_u16ptr = (u16 *) &msg[MSGHDRLEN];
-    for (i=0;i<8000;i++) {
-        //chA and chB are in a single 32 bit word
-    	regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
-    	cha = (short int) ((regval & 0xFFFF0000) >> 16);
-    	chb = (short int) (regval & 0xFFFF);
-        regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
-    	chc = (short int) ((regval & 0xFFFF0000) >> 16);
-    	chd = (short int) (regval & 0xFFFF);
-
-        //chC and chD are in a single 32 bit word
-        *msg_u16ptr++ = chc;
-        *msg_u16ptr++ = chd;
-        *msg_u16ptr++ = cha;
-        *msg_u16ptr++ = chb;
-
-
-    }
-
-    //printf("Resetting FIFO...\n");
-    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 1);
-    usleep(1);
-    Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 0);
-    usleep(10);
 
 
 }
@@ -174,28 +181,27 @@ reconnect:
 		//xil_printf("Wvfm: In main waveform loop...\r\n");
 		loopcnt++;
 		vTaskDelay(pdMS_TO_TICKS(1000));
+		soft_trig_artix();
 
 
         //xil_printf("Wvfm(%d) Sending Live Data...\r\n",loopcnt);
-        ReadLiveADCWvfm(msgid51_buf);
-        //write out Live ADC data (msg51)
+        ReadChainA(msgid51_buf);
+        //write out chainA data (msg51)
         Host2NetworkConvWvfm(msgid51_buf,sizeof(msgid51_buf)+MSGHDRLEN);
         n = write(newsockfd,msgid51_buf,MSGID51LEN+MSGHDRLEN);
+        xil_printf("Wrote Chain A waveform\r\n");
         if (n < 0) {
         	printf("PSC Waveform: ERROR writing MSG 51 - ADC Waveform\n");
         	close(newsockfd);
         	goto reconnect;
         }
 
-
-
-
-
 	}
 
 	/* close connection */
 	close(newsockfd);
 	vTaskDelete(NULL);
+
 }
 
 

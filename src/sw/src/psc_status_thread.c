@@ -189,7 +189,7 @@ void Host2NetworkConvStatus(char *inbuf, int len) {
 
 
 
-
+/*
 void ReadGenRegs(char *msg) {
 
     u32 *msg_u32ptr;
@@ -222,10 +222,10 @@ void ReadGenRegs(char *msg) {
     memcpy(&msg[MSGHDRLEN],&status,sizeof(status));
 
 }
+*/
 
 
-
-
+/*
 void ReadPosRegs(char *msg) {
 
     u32 *msg_u32ptr;
@@ -251,11 +251,9 @@ void ReadPosRegs(char *msg) {
     //copy the structure to the PSC msg buffer
     memcpy(&msg[MSGHDRLEN],&SAdata,sizeof(SAdata));
 
-
-
-
-
 }
+*/
+
 
 
 void ReadSysInfo(char *msg) {
@@ -336,15 +334,6 @@ void ReadSysInfo(char *msg) {
     //xil_printf("Uptime: %d\r\n",UptimeCounter);
 
 
-
-    //read temperatures from Thermistors on AFE
-    for (i=0;i<=5;i++) {
-        syshealth.therm_temp[i] = thermistors[i];
-        printf("Therm %d:  = %5.3f \r\n",i,syshealth.therm_temp[i]);
-    }
-
-
-
     //copy the syshealth structure to the PSC msg buffer
     memcpy(&msg[MSGHDRLEN],&syshealth,sizeof(syshealth));
 
@@ -359,8 +348,6 @@ void psc_status_thread()
 	int clilen;
 	struct sockaddr_in serv_addr, cli_addr;
     int n,loop=0;
-    int sa_trigwait, sa_cnt=0, sa_cnt_prev=0;
-
 
 
     xil_printf("Starting PSC Status Server...\r\n");
@@ -411,45 +398,20 @@ reconnect:
 	    vTaskDelay(pdMS_TO_TICKS(1000));
 
 
+        // Update Slow status information at 1Hz
 
-        ReadGenRegs(msgid30_buf);
-        //write 10Hz msg30 packet
-	    Host2NetworkConvStatus(msgid30_buf,sizeof(msgid30_buf)+MSGHDRLEN);
-	    n = write(newsockfd,msgid30_buf,MSGID30LEN+MSGHDRLEN);
+        //printf("Reading Sys Info\n");
+        ReadSysInfo(msgid32_buf);
+    	Host2NetworkConvStatus(msgid32_buf,sizeof(msgid32_buf)+MSGHDRLEN);
+    	//for(i=0;i<160;i=i+4)
+        //    printf("%d: %d  %d  %d  %d\n",i-8,msgid32_buf[i], msgid32_buf[i+1],
+        //		                msgid32_buf[i+2], msgid32_buf[i+3]);
+        n = write(newsockfd,msgid32_buf,MSGID32LEN+MSGHDRLEN);
         if (n < 0) {
-           printf("Status socket: ERROR writing MSG 30 - 10Hz Info\n");
-           close(newsockfd);
-           goto reconnect;
-        }
-
-
-
-        ReadPosRegs(msgid31_buf);
-        //write 10Hz msg31 packet
-        Host2NetworkConvStatus(msgid31_buf,sizeof(msgid31_buf)+MSGHDRLEN);
-	    n = write(newsockfd,msgid31_buf,MSGID31LEN+MSGHDRLEN);
-        if (n < 0) {
-          printf("Status socket: ERROR writing MSG 31 - Pos Info\n");
+          printf("Status socket: ERROR writing MSG 32 - System Info\n");
           close(newsockfd);
           goto reconnect;
         }
-
-
-        // Update Slow status information at 1Hz
-    	if ((loop % 10) == 0) {
-           //printf("Reading Sys Info\n");
-           ReadSysInfo(msgid32_buf);
-    	   Host2NetworkConvStatus(msgid32_buf,sizeof(msgid32_buf)+MSGHDRLEN);
-    	    //for(i=0;i<160;i=i+4)
-              //    printf("%d: %d  %d  %d  %d\n",i-8,msgid32_buf[i], msgid32_buf[i+1],
-              //		                msgid32_buf[i+2], msgid32_buf[i+3]);
-           n = write(newsockfd,msgid32_buf,MSGID32LEN+MSGHDRLEN);
-           if (n < 0) {
-              printf("Status socket: ERROR writing MSG 32 - System Info\n");
-              close(newsockfd);
-              goto reconnect;
-            }
-    	}
 
 		loop++;
 

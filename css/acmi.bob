@@ -1,0 +1,3059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2025-01-21 14:00:58 by mead-->
+<display version="2.0.0">
+  <name>ACMI</name>
+  <width>1000</width>
+  <height>800</height>
+  <background_color>
+    <color red="240" green="240" blue="240">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <grid_step_x>6</grid_step_x>
+  <grid_step_y>6</grid_step_y>
+  <widget type="polyline" version="2.0.0">
+    <name>Polyline_4</name>
+    <macros>
+      <pv_name></pv_name>
+    </macros>
+    <height>100</height>
+    <line_width>1</line_width>
+    <actions>
+    </actions>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>ACMI</text>
+    <width>996</width>
+    <height>30</height>
+    <font>
+      <font family="Arial" style="BOLD" size="17.821782178217823">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="29" green="40" blue="184">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color red="135" green="181" blue="255">
+      </color>
+    </background_color>
+    <transparent>false</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="tabs" version="2.0.0">
+    <name>Tabs</name>
+    <tabs>
+      <tab>
+        <name>Readbacks</name>
+        <children>
+          <widget type="label" version="2.0.0">
+            <name>Label_157</name>
+            <text>Accum</text>
+            <x>627</x>
+            <y>39</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_254</name>
+            <pv_name>LN-BI{ACMI:A}beamaccum_limit_calc-I</pv_name>
+            <x>741</x>
+            <y>60</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_158</name>
+            <text>Accum Limit</text>
+            <x>631</x>
+            <y>58</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_159</name>
+            <text>EEPROM CRC</text>
+            <x>627</x>
+            <y>80</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_255</name>
+            <pv_name>LN-BI{ACMI:A}EEPROM:CRC-I</pv_name>
+            <x>742</x>
+            <y>81</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_256</name>
+            <pv_name>LN-BI{ACMI:A}acis-I</pv_name>
+            <x>496</x>
+            <y>103</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <format>4</format>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_160</name>
+            <text>ACIS</text>
+            <x>381</x>
+            <y>102</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot</name>
+            <x>99</x>
+            <y>399</y>
+            <width>798</width>
+            <title>ADC Waveform</title>
+            <x_axis>
+              <title>Sample Number</title>
+              <autoscale>false</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>1000.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>adu</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>100.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name></name>
+                <x_pv></x_pv>
+                <y_pv>LN-BI{ACMI:A}ADC_wfvm-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_235</name>
+            <pv_name>LN-BI{ACMI:A}TP2:integral-I</pv_name>
+            <x>467</x>
+            <y>264</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_236</name>
+            <pv_name>LN-BI{ACMI:A}TP2:fwhm-I</pv_name>
+            <x>467</x>
+            <y>285</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_237</name>
+            <pv_name>LN-BI{ACMI:A}TP2:peak-index-I</pv_name>
+            <x>467</x>
+            <y>306</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_150</name>
+            <text>Test Pulse 3</text>
+            <x>574</x>
+            <y>197</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_238</name>
+            <pv_name>LN-BI{ACMI:A}TP3:baseline-I</pv_name>
+            <x>579</x>
+            <y>223</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_239</name>
+            <pv_name>LN-BI{ACMI:A}TP3:peak-I</pv_name>
+            <x>579</x>
+            <y>244</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_240</name>
+            <pv_name>LN-BI{ACMI:A}TP3:integral-I</pv_name>
+            <x>579</x>
+            <y>265</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_241</name>
+            <pv_name>LN-BI{ACMI:A}TP3:fwhm-I</pv_name>
+            <x>579</x>
+            <y>286</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_242</name>
+            <pv_name>LN-BI{ACMI:A}TP3:peak-index-I</pv_name>
+            <x>579</x>
+            <y>307</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_151</name>
+            <text>Beam OOW</text>
+            <x>688</x>
+            <y>197</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_243</name>
+            <pv_name>LN-BI{ACMI:A}BEAMOOW:baseline-I</pv_name>
+            <x>693</x>
+            <y>223</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_244</name>
+            <pv_name>LN-BI{ACMI:A}BEAMOOW:peak-I</pv_name>
+            <x>693</x>
+            <y>244</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_245</name>
+            <pv_name>LN-BI{ACMI:A}BEAMOOW:integral-I</pv_name>
+            <x>693</x>
+            <y>265</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_246</name>
+            <pv_name>LN-BI{ACMI:A}BEAMOOW:fwhm-I</pv_name>
+            <x>693</x>
+            <y>286</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_247</name>
+            <pv_name>LN-BI{ACMI:A}BEAMOOW:peak-index-I</pv_name>
+            <x>693</x>
+            <y>307</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_248</name>
+            <pv_name>LN-BI{ACMI:A}faults_live-I</pv_name>
+            <x>496</x>
+            <y>39</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <format>4</format>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_152</name>
+            <text>Faults live</text>
+            <x>381</x>
+            <y>39</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_249</name>
+            <pv_name>LN-BI{ACMI:A}faults_lat-I</pv_name>
+            <x>495</x>
+            <y>60</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <format>4</format>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_153</name>
+            <text>Faults latched</text>
+            <x>385</x>
+            <y>58</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_154</name>
+            <text>Faults TP</text>
+            <x>381</x>
+            <y>80</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_250</name>
+            <pv_name>LN-BI{ACMI:A}faults_tp-I</pv_name>
+            <x>496</x>
+            <y>81</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <format>4</format>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_155</name>
+            <text>StartUp Count</text>
+            <x>134</x>
+            <y>109</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_251</name>
+            <pv_name>LN-BI{ACMI:A}startup_cnt-I</pv_name>
+            <x>239</x>
+            <y>112</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_252</name>
+            <pv_name>LN-BI{ACMI:A}timestamp-I</pv_name>
+            <x>239</x>
+            <y>91</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_156</name>
+            <text>Timestamp</text>
+            <x>134</x>
+            <y>91</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_253</name>
+            <pv_name>LN-BI{ACMI:A}accum-I</pv_name>
+            <x>742</x>
+            <y>39</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_129</name>
+            <text>Header</text>
+            <x>130</x>
+            <y>39</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_131</name>
+            <text>FPGA Ver</text>
+            <x>134</x>
+            <y>57</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_221</name>
+            <pv_name>LN-BI{ACMI:A}fpgaver-I</pv_name>
+            <x>239</x>
+            <y>60</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_219</name>
+            <pv_name>LN-BI{ACMI:A}header-I</pv_name>
+            <x>239</x>
+            <y>39</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <format>4</format>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_138</name>
+            <text>Test Pulse 1</text>
+            <x>343</x>
+            <y>197</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_228</name>
+            <pv_name>LN-BI{ACMI:A}TP1:baseline-I</pv_name>
+            <x>352</x>
+            <y>222</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_229</name>
+            <pv_name>LN-BI{ACMI:A}TP1:peak-I</pv_name>
+            <x>352</x>
+            <y>243</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_230</name>
+            <pv_name>LN-BI{ACMI:A}TP1:integral-I</pv_name>
+            <x>352</x>
+            <y>264</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_231</name>
+            <pv_name>LN-BI{ACMI:A}TP1:fwhm-I</pv_name>
+            <x>352</x>
+            <y>285</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_232</name>
+            <pv_name>LN-BI{ACMI:A}TP1:peak-index-I</pv_name>
+            <x>352</x>
+            <y>306</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_132</name>
+            <text>Beam</text>
+            <x>214</x>
+            <y>196</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_133</name>
+            <text>Baseline</text>
+            <x>130</x>
+            <y>222</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_222</name>
+            <pv_name>LN-BI{ACMI:A}BEAM:baseline-I</pv_name>
+            <x>238</x>
+            <y>222</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_224</name>
+            <pv_name>LN-BI{ACMI:A}BEAM:peak-I</pv_name>
+            <x>238</x>
+            <y>243</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_134</name>
+            <text>Peak</text>
+            <x>130</x>
+            <y>243</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_135</name>
+            <text>Integral</text>
+            <x>130</x>
+            <y>264</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_225</name>
+            <pv_name>LN-BI{ACMI:A}BEAM:integral-I</pv_name>
+            <x>238</x>
+            <y>264</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_226</name>
+            <pv_name>LN-BI{ACMI:A}BEAM:fwhm-I</pv_name>
+            <x>238</x>
+            <y>285</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_136</name>
+            <text>FWHM</text>
+            <x>130</x>
+            <y>285</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_227</name>
+            <pv_name>LN-BI{ACMI:A}BEAM:peak-index-I</pv_name>
+            <x>238</x>
+            <y>306</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_137</name>
+            <text>Peak Index</text>
+            <x>130</x>
+            <y>306</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_144</name>
+            <text>Test Pulse 2</text>
+            <x>462</x>
+            <y>197</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_233</name>
+            <pv_name>LN-BI{ACMI:A}TP2:baseline-I</pv_name>
+            <x>467</x>
+            <y>222</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_234</name>
+            <pv_name>LN-BI{ACMI:A}TP2:peak-I</pv_name>
+            <x>467</x>
+            <y>243</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>EEPROM</name>
+        <children>
+          <widget type="label" version="2.0.0">
+            <name>Label_198</name>
+            <text>TP1 Pos Level</text>
+            <x>518</x>
+            <y>68</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_199</name>
+            <text>TP1 Neg Level</text>
+            <x>518</x>
+            <y>89</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_297</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_neg_level-I</pv_name>
+            <x>645</x>
+            <y>159</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_298</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pos_level-I</pv_name>
+            <x>645</x>
+            <y>138</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_201</name>
+            <text>TP2 Pos Level</text>
+            <x>516</x>
+            <y>138</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_202</name>
+            <text>TP2 Neg Level</text>
+            <x>516</x>
+            <y>159</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_302</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_neg_level-I</pv_name>
+            <x>644</x>
+            <y>232</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_303</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pos_level-I</pv_name>
+            <x>644</x>
+            <y>211</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_206</name>
+            <text>TP3 Pos Level</text>
+            <x>515</x>
+            <y>211</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_207</name>
+            <text>TP3 Neg Level</text>
+            <x>515</x>
+            <y>232</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_304</name>
+            <pv_name>LN-BI{ACMI:A}EE:beamaccum_limit_hr-I</pv_name>
+            <x>284</x>
+            <y>637</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_208</name>
+            <text>Beam Accum Limit hour</text>
+            <x>119</x>
+            <y>637</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_305</name>
+            <pv_name>LN-BI{ACMI:A}EE:beam_HL-I</pv_name>
+            <x>285</x>
+            <y>658</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_209</name>
+            <text>Beam HL</text>
+            <x>119</x>
+            <y>657</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_306</name>
+            <pv_name>LN-BI{ACMI:A}EE:baseline_LL-I</pv_name>
+            <x>286</x>
+            <y>680</y>
+            <height>22</height>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_307</name>
+            <pv_name>LN-BI{ACMI:A}EE:baseline_HL-I</pv_name>
+            <x>286</x>
+            <y>702</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_210</name>
+            <text>Baseline LL</text>
+            <x>120</x>
+            <y>681</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_211</name>
+            <text>Baseline HL</text>
+            <x>121</x>
+            <y>702</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_308</name>
+            <pv_name>LN-BI{ACMI:A}EE:charge_cal-I</pv_name>
+            <x>645</x>
+            <y>637</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_212</name>
+            <text>Charge Calibration</text>
+            <x>473</x>
+            <y>637</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_309</name>
+            <pv_name>LN-BI{ACMI:A}EE:accum_qmin-I</pv_name>
+            <x>646</x>
+            <y>658</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_213</name>
+            <text>Accum Q Min</text>
+            <x>474</x>
+            <y>658</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_310</name>
+            <pv_name>LN-BI{ACMI:A}EE:accum_len-I</pv_name>
+            <x>646</x>
+            <y>681</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_311</name>
+            <pv_name>LN-BI{ACMI:A}EE:crc-I</pv_name>
+            <x>647</x>
+            <y>702</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_214</name>
+            <text>Accum Length</text>
+            <x>474</x>
+            <y>681</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_215</name>
+            <text>CRC EEPROM</text>
+            <x>475</x>
+            <y>702</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry</name>
+            <pv_name>LN-BI{ACMI:A}EE:header-SP</pv_name>
+            <x>386</x>
+            <y>37</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_1</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pulse_delay-SP</pv_name>
+            <x>386</x>
+            <y>69</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_2</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pulse_width-SP</pv_name>
+            <x>386</x>
+            <y>89</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_3</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_adc_delay-SP</pv_name>
+            <x>386</x>
+            <y>109</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_4</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_adc_delay-SP</pv_name>
+            <x>387</x>
+            <y>181</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_5</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pulse_width-SP</pv_name>
+            <x>387</x>
+            <y>161</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_6</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pulse_delay-SP</pv_name>
+            <x>387</x>
+            <y>141</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_7</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pulse_delay-SP</pv_name>
+            <x>387</x>
+            <y>211</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_8</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pulse_width-SP</pv_name>
+            <x>387</x>
+            <y>232</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_9</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_adc_delay-SP</pv_name>
+            <x>387</x>
+            <y>253</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_10</name>
+            <pv_name>LN-BI{ACMI:A}EE:beam_adc_delay-SP</pv_name>
+            <x>387</x>
+            <y>282</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_11</name>
+            <pv_name>LN-BI{ACMI:A}EE:beamoow_thresh-SP</pv_name>
+            <x>387</x>
+            <y>310</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_12</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_integral_LL-SP</pv_name>
+            <x>387</x>
+            <y>343</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_13</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_integral_HL-SP</pv_name>
+            <x>387</x>
+            <y>364</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_18</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_integral_LL-SP</pv_name>
+            <x>387</x>
+            <y>385</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_19</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_integral_HL-SP</pv_name>
+            <x>387</x>
+            <y>406</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_20</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_integral_LL-SP</pv_name>
+            <x>387</x>
+            <y>427</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_21</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_integral_HL-SP</pv_name>
+            <x>387</x>
+            <y>448</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_22</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_peak_LL-SP</pv_name>
+            <x>387</x>
+            <y>481</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_23</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_peak_HL-SP</pv_name>
+            <x>387</x>
+            <y>502</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_24</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_peak_LL-SP</pv_name>
+            <x>387</x>
+            <y>523</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_25</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_peak_LL-SP</pv_name>
+            <x>387</x>
+            <y>565</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_26</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_peak_HL-SP</pv_name>
+            <x>387</x>
+            <y>544</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_27</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_peak_HL-SP</pv_name>
+            <x>387</x>
+            <y>586</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_28</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_fwhm_LL-SP</pv_name>
+            <x>747</x>
+            <y>343</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_29</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_fwhm_HL-SP</pv_name>
+            <x>747</x>
+            <y>364</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_30</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_fwhm_LL-SP</pv_name>
+            <x>747</x>
+            <y>385</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_31</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_fwhm_HL-SP</pv_name>
+            <x>747</x>
+            <y>406</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_32</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_fwhm_LL-SP</pv_name>
+            <x>747</x>
+            <y>427</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_33</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_fwhm_HL-SP</pv_name>
+            <x>747</x>
+            <y>448</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_35</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_baseline_LL-SP</pv_name>
+            <x>748</x>
+            <y>481</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_36</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_baseline_HL-SP</pv_name>
+            <x>748</x>
+            <y>502</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_37</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_baseline_LL-SP</pv_name>
+            <x>748</x>
+            <y>523</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_38</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_baseline_HL-SP</pv_name>
+            <x>748</x>
+            <y>544</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_39</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_baseline_LL-SP</pv_name>
+            <x>748</x>
+            <y>565</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_40</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_baseline_HL-SP</pv_name>
+            <x>748</x>
+            <y>586</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_41</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pos_level-SP</pv_name>
+            <x>750</x>
+            <y>68</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_42</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_neg_level-SP</pv_name>
+            <x>750</x>
+            <y>88</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_43</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pos_level-SP</pv_name>
+            <x>747</x>
+            <y>138</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_44</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_neg_level-SP</pv_name>
+            <x>747</x>
+            <y>158</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_45</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pos_level-SP</pv_name>
+            <x>747</x>
+            <y>211</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_46</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_neg_level-SP</pv_name>
+            <x>747</x>
+            <y>231</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_47</name>
+            <pv_name>LN-BI{ACMI:A}EE:charge_cal-SP</pv_name>
+            <x>748</x>
+            <y>637</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_48</name>
+            <pv_name>LN-BI{ACMI:A}EE:accum_qmin-SP</pv_name>
+            <x>748</x>
+            <y>658</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_49</name>
+            <pv_name>LN-BI{ACMI:A}EE:accum_len-SP</pv_name>
+            <x>748</x>
+            <y>680</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_51</name>
+            <pv_name>LN-BI{ACMI:A}EE:beamaccum_limit_hr-SP</pv_name>
+            <x>387</x>
+            <y>637</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_52</name>
+            <pv_name>LN-BI{ACMI:A}EE:beam_HL-SP</pv_name>
+            <x>387</x>
+            <y>658</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_53</name>
+            <pv_name>LN-BI{ACMI:A}EE:baseline_LL-SP</pv_name>
+            <x>388</x>
+            <y>680</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_54</name>
+            <pv_name>LN-BI{ACMI:A}EE:baseline_HL-SP</pv_name>
+            <x>388</x>
+            <y>702</y>
+          </widget>
+          <widget type="textentry" version="3.0.0">
+            <name>Text Entry_55</name>
+            <pv_name>LN-BI{ACMI:A}EE:crc-SP</pv_name>
+            <x>750</x>
+            <y>702</y>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_180</name>
+            <text>TP1 Peak LL</text>
+            <x>155</x>
+            <y>481</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_181</name>
+            <text>TP1 Peak HL</text>
+            <x>155</x>
+            <y>502</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_182</name>
+            <text>TP2 Peak LL</text>
+            <x>155</x>
+            <y>523</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_276</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_peak_LL-I</pv_name>
+            <x>284</x>
+            <y>523</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_277</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_peak_HL-I</pv_name>
+            <x>284</x>
+            <y>502</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_278</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_peak_LL-I</pv_name>
+            <x>284</x>
+            <y>481</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_279</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_peak_HL-I</pv_name>
+            <x>284</x>
+            <y>544</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_183</name>
+            <text>TP2 Peak HL</text>
+            <x>155</x>
+            <y>544</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_184</name>
+            <text>TP3 Peak LL</text>
+            <x>155</x>
+            <y>565</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_280</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_peak_LL-I</pv_name>
+            <x>284</x>
+            <y>565</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_281</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_peak_HL-I</pv_name>
+            <x>284</x>
+            <y>586</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_185</name>
+            <text>TP3 Peak HL</text>
+            <x>155</x>
+            <y>586</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_186</name>
+            <text>TP1 FWHM LL</text>
+            <x>515</x>
+            <y>343</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_187</name>
+            <text>TP1 FWHM HL</text>
+            <x>515</x>
+            <y>364</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_188</name>
+            <text>TP2 FWHM LL</text>
+            <x>515</x>
+            <y>385</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_282</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_fwhm_LL-I</pv_name>
+            <x>644</x>
+            <y>385</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_283</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_fwhm_HL-I</pv_name>
+            <x>644</x>
+            <y>364</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_284</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_fwhm_LL-I</pv_name>
+            <x>644</x>
+            <y>343</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_285</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_fwhm_HL-I</pv_name>
+            <x>644</x>
+            <y>406</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_189</name>
+            <text>TP2 FWHM HL</text>
+            <x>515</x>
+            <y>406</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_190</name>
+            <text>TP3 FWHM LL</text>
+            <x>515</x>
+            <y>427</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_286</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_fwhm_LL-I</pv_name>
+            <x>644</x>
+            <y>427</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_287</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_fwhm_HL-I</pv_name>
+            <x>644</x>
+            <y>448</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_191</name>
+            <text>TP3 FWHM HL</text>
+            <x>515</x>
+            <y>448</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_192</name>
+            <text>TP1 Baseline LL</text>
+            <x>515</x>
+            <y>481</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_193</name>
+            <text>TP1 Baseline HL</text>
+            <x>515</x>
+            <y>502</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_194</name>
+            <text>TP2 Baseline LL</text>
+            <x>515</x>
+            <y>523</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_288</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_baseline_LL-I</pv_name>
+            <x>644</x>
+            <y>523</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_289</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_baseline_HL-I</pv_name>
+            <x>644</x>
+            <y>502</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_290</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_baseline_LL-I</pv_name>
+            <x>644</x>
+            <y>481</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_291</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_baseline_HL-I</pv_name>
+            <x>644</x>
+            <y>544</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_195</name>
+            <text>TP2 Baseline HL</text>
+            <x>515</x>
+            <y>544</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_196</name>
+            <text>TP3 Baseline LL</text>
+            <x>515</x>
+            <y>565</y>
+            <width>117</width>
+            <height>21</height>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_292</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_baseline_LL-I</pv_name>
+            <x>644</x>
+            <y>565</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_293</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_baseline_HL-I</pv_name>
+            <x>644</x>
+            <y>586</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_197</name>
+            <text>TP3 Baseline HL</text>
+            <x>515</x>
+            <y>586</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_294</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_neg_level-I</pv_name>
+            <x>647</x>
+            <y>89</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_295</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pos_level-I</pv_name>
+            <x>647</x>
+            <y>68</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_161</name>
+            <text>Header</text>
+            <x>176</x>
+            <y>37</y>
+            <width>96</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_162</name>
+            <text>TP1 Pulse Delay</text>
+            <x>155</x>
+            <y>68</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_163</name>
+            <text>TP1 Pulse Width</text>
+            <x>155</x>
+            <y>89</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_164</name>
+            <text>TP1 ADC Delay</text>
+            <x>155</x>
+            <y>110</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_258</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_adc_delay-I</pv_name>
+            <x>284</x>
+            <y>110</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_259</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pulse_width-I</pv_name>
+            <x>284</x>
+            <y>89</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_260</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_pulse_delay-I</pv_name>
+            <x>284</x>
+            <y>68</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_261</name>
+            <pv_name>LN-BI{ACMI:A}EE:header-I</pv_name>
+            <x>284</x>
+            <y>37</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_166</name>
+            <text>TP2 Pulse Delay</text>
+            <x>155</x>
+            <y>139</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_167</name>
+            <text>TP2 Pulse Width</text>
+            <x>155</x>
+            <y>160</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_168</name>
+            <text>TP2 ADC Delay</text>
+            <x>155</x>
+            <y>181</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_262</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_adc_delay-I</pv_name>
+            <x>284</x>
+            <y>181</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_263</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pulse_width-I</pv_name>
+            <x>284</x>
+            <y>160</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_264</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_pulse_delay-I</pv_name>
+            <x>284</x>
+            <y>139</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_169</name>
+            <text>TP3 Pulse Delay</text>
+            <x>155</x>
+            <y>211</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_170</name>
+            <text>TP3 Pulse Width</text>
+            <x>155</x>
+            <y>232</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_171</name>
+            <text>TP3 ADC Delay</text>
+            <x>155</x>
+            <y>253</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_265</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_adc_delay-I</pv_name>
+            <x>284</x>
+            <y>253</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_266</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pulse_width-I</pv_name>
+            <x>284</x>
+            <y>232</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_267</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_pulse_delay-I</pv_name>
+            <x>284</x>
+            <y>211</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_268</name>
+            <pv_name>LN-BI{ACMI:A}EE:beam_adc_delay-I</pv_name>
+            <x>284</x>
+            <y>282</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_172</name>
+            <text>Beam ADC Delay</text>
+            <x>155</x>
+            <y>282</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_269</name>
+            <pv_name>LN-BI{ACMI:A}EE:beamoow_thresh-I</pv_name>
+            <x>284</x>
+            <y>310</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_173</name>
+            <text>Beam OOW Threshold</text>
+            <x>119</x>
+            <y>310</y>
+            <width>153</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_174</name>
+            <text>TP1 Integral LL</text>
+            <x>155</x>
+            <y>343</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_175</name>
+            <text>TP1 Integral HL</text>
+            <x>155</x>
+            <y>364</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_176</name>
+            <text>TP2 Integral LL</text>
+            <x>155</x>
+            <y>385</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_270</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_integral_LL-I</pv_name>
+            <x>284</x>
+            <y>385</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_271</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_integral_HL-I</pv_name>
+            <x>284</x>
+            <y>364</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_272</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP1_integral_LL-I</pv_name>
+            <x>284</x>
+            <y>343</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_273</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP2_integral_HL-I</pv_name>
+            <x>284</x>
+            <y>406</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_177</name>
+            <text>TP2 Integral HL</text>
+            <x>155</x>
+            <y>406</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_178</name>
+            <text>TP3 Integral LL</text>
+            <x>155</x>
+            <y>427</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_274</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_integral_LL-I</pv_name>
+            <x>284</x>
+            <y>427</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="textupdate" version="2.0.0">
+            <name>Text Update_275</name>
+            <pv_name>LN-BI{ACMI:A}EE:TP3_integral_HL-I</pv_name>
+            <x>284</x>
+            <y>448</y>
+            <background_color>
+              <color red="192" green="192" blue="192">
+              </color>
+            </background_color>
+            <vertical_alignment>1</vertical_alignment>
+            <wrap_words>false</wrap_words>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+          <widget type="label" version="2.0.0">
+            <name>Label_179</name>
+            <text>TP3 Integral HL</text>
+            <x>155</x>
+            <y>448</y>
+            <width>117</width>
+            <horizontal_alignment>2</horizontal_alignment>
+            <vertical_alignment>1</vertical_alignment>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+    <y>48</y>
+    <width>996</width>
+    <height>738</height>
+  </widget>
+</display>

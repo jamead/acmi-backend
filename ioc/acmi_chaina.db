@@ -1,0 +1,1101 @@
+#############################################################
+#
+#       ACMI Database for Chain A & B 
+#
+#############################################################
+
+# Flush reg to socket buffer, trigger send to send all socket buffer to PSC 
+record(bo, "$(P){ACMI:$(NO)}send") { 
+    field(DTYP, "PSC Ctrl Send All") 
+    field(OUT , "@Tx") 
+    field(ZNAM, "Send") 
+    field(ONAM, "Send") 
+} 
+ 
+# Write a single register
+record(longout, "$(P){ACMI:$(NO)}GoRegSingleWrite") {
+    field(DTYP, "PSC Ctrl Send")
+    field(OUT , "@Tx")
+    field(VAL , "1") 
+    field(FLNK, "$(P){ACMI:$(NO)}send")
+}
+
+
+
+############# Waveform PV's (MSG ID 51) #########################
+
+record(ai,"$(P){ACMI:$(NO)}header-I") {
+    field(DESC, "Header")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 0 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}fpgaver-I") {
+    field(DESC, "FPGAVER")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 4 ")
+    field(SCAN, "I/O Intr")
+}
+
+
+record(ai,"$(P){ACMI:$(NO)}BEAM:baseline-I") {
+    field(DESC, "Beam Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 8 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAM:peak-I") {
+    field(DESC, "Beam Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 12 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAM:integral-I") {
+    field(DESC, "Beam Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 16 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAM:fwhm-I") {
+    field(DESC, "Beam Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 20 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAM:peak-index-I") {
+    field(DESC, "Beam Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 24")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP1:baseline-I") {
+    field(DESC, "Test Pulse 1 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 28 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP1:peak-I") {
+    field(DESC, "Test Pulse 1 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 32 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP1:integral-I") {
+    field(DESC, "Test Pulse 1 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 36 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP1:fwhm-I") {
+    field(DESC, "Test Pulse 1 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 40 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP1:peak-index-I") {
+    field(DESC, "Test Pulse 1 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 44")
+    field(SCAN, "I/O Intr")
+}
+
+
+record(ai,"$(P){ACMI:$(NO)}TP2:baseline-I") {
+    field(DESC, "Test Pulse 2 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 48 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP2:peak-I") {
+    field(DESC, "Test Pulse 2 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 52 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP2:integral-I") {
+    field(DESC, "Test Pulse 2 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 56 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP2:fwhm-I") {
+    field(DESC, "Test Pulse 2 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 60 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP2:peak-index-I") {
+    field(DESC, "Test Pulse 2 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 64")
+    field(SCAN, "I/O Intr")
+}
+
+
+record(ai,"$(P){ACMI:$(NO)}TP3:baseline-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 68 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP3:peak-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 72 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP3:integral-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 76 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP3:fwhm-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 80 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}TP3:peak-index-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 84")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAMOOW:baseline-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 88 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAMOOW:peak-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 92 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAMOOW:integral-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 96 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAMOOW:fwhm-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 100 ")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}BEAMOOW:peak-index-I") {
+    field(DESC, "Test Pulse 3 Info")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 104")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}faults_live-I") {
+    field(DESC, "Faults Live")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 108")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}faults_lat-I") {
+    field(DESC, "Faults Latched")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 112")
+    field(SCAN, "I/O Intr")
+}
+
+
+record(ai,"$(P){ACMI:$(NO)}timestamp-I") {
+    field(DESC, "Timestamp")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 116")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}accum-I") {
+    field(DESC, "Accumulator")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 120")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}acis-I") {
+    field(DESC, "ACIS Readbacks")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 124")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EEPROM:CRC-I") {
+    field(DESC, "ACIS Readbacks")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 128")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}faults_tp-I") {
+    field(DESC, "Faults TP")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 132")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}startup_cnt-I") {
+    field(DESC, "Startup Counter")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 136")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai,"$(P){ACMI:$(NO)}beamaccum_limit_calc-I") {
+    field(DESC, "Faults TP")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 140")
+    field(SCAN, "I/O Intr")
+}
+
+
+### EEPROM SetPoint & Readbacks ##################
+
+record(longout, "$(P){ACMI:$(NO)}EE:header-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 256")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:header-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 256")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_pulse_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 260")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_pulse_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 260")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_pulse_width-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 264")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_pulse_width-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 264")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_adc_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 268")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_adc_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 268")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_pulse_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 272")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_pulse_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 272")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_pulse_width-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 276")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_pulse_width-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 276")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_adc_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 280")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_adc_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 280")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_pulse_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 284")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_pulse_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 284")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_pulse_width-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 288")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_pulse_width-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 288")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_adc_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 292")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_adc_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 292")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:beam_adc_delay-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 296")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:beam_adc_delay-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 296")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:beamoow_thresh-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 300")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:beamoow_thresh-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 300")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_integral_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 304")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_integral_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 304")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_integral_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 308")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_integral_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 308")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_integral_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 312")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_integral_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 312")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_integral_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 316")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_integral_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 316")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_integral_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 320")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_integral_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 320")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_integral_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 324")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_integral_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 324")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_peak_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 328")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_peak_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 328")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_peak_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 332")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_peak_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 332")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_peak_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 336")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_peak_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 336")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_peak_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 340")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_peak_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 340")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_peak_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 344")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_peak_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 344")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_peak_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 348")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_peak_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 348")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_fwhm_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 352")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_fwhm_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 352")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_fwhm_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 356")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_fwhm_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 356")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_fwhm_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 360")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_fwhm_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 360")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_fwhm_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 364")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_fwhm_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 364")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_fwhm_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 368")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_fwhm_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 368")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_fwhm_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 372")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_fwhm_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 372")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_baseline_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 376")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_baseline_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 376")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_baseline_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 380")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_baseline_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 380")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_baseline_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 384")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_baseline_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 384")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_baseline_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 388")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_baseline_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 388")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_baseline_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 392")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_baseline_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 392")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_baseline_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 396")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_baseline_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 396")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_pos_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 400")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_pos_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 400")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_neg_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 404")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_neg_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 404")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_pos_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 408")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_pos_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 408")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_neg_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 412")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_neg_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 412")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_pos_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 416")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_pos_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 416")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_neg_level-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 420")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_neg_level-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 420")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:beamaccum_limit_hr-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 424")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:beamaccum_limit_hr-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 424")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:beam_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 428")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:beam_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 428")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:baseline_LL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 432")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:baseline_LL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 432")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:baseline_HL-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 436")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:baseline_HL-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 436")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:charge_cal-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 440")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:charge_cal-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 440")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:accum_qmin-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 444")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:accum_qmin-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 444")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:accum_len-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 448")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:accum_len-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 448")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+record(longout,"$(P){ACMI:$(NO)}EE:crc-SP") {
+    field(DESC, "EEPROM write")
+    field(DTYP, "PSC Single I32")
+    field(OUT , "@Tx 1 452")
+    field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
+}
+
+record(ai,"$(P){ACMI:$(NO)}EE:crc-I") {
+    field(DESC, "EEPROM readback")
+    field(DTYP, "PSC Reg")
+    field(INP , "@Wfm 51 452")
+    field(SCAN, "I/O Intr")
+}
+
+
+
+
+#############################
+### ADC Waveform
+#############################
+record(waveform,"$(P){ACMI:$(NO)}ADC_wfvm-I") {
+    field(DTYP, "PSC Block I32 In")
+    field(INP , "@Wfm 51 1024 ")
+    field(SCAN,"I/O Intr")
+    field(FTVL,"DOUBLE")
+    field(NELM,"1000")     
+}
+
+
+

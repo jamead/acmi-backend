@@ -24,6 +24,27 @@
 #define I2C_PORTEXP1_ADDR 0x71
 
 
+
+#define SPI_DATA_ADDR 0
+#define SPI_ADDR_ADDR 1
+#define SPI_RW_ADDR   2
+#define EEPROM_WRDATA  0x51
+#define EEPROM_TRIG    0x50
+#define EEPROM_READALL 0x52
+
+
+// opcodes for CAT25320 EEPROM
+#define EEPROM_OPCODE_RDSR 5
+#define EEPROM_OPCODE_WRSR 1
+#define EEPROM_OPCODE_WREN 6
+#define EEPROM_OPCODE_WRDI 4
+#define EEPROM_OPCODE_READ 3
+#define EEPROM_OPCODE_WRITE 2
+
+
+
+
+
 typedef struct {
   u8 ipaddr[4];
   u8 ipmask[4];

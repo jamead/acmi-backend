@@ -90,17 +90,22 @@ module top_tb;
         #200  
         `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h0, resp);         
             
-        #10000;  
-         //Write the artix spi
-        `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h2, resp);      
-        #200
-        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h5, resp);    
-        #200
-        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h1, resp);    
-        #200  
-        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h0, resp);         
+//        #10000;  
+//         //Write the artix spi
+//        `ZYNQ_VIP.write_data(32'hA0000020,4, 32'h2, resp);      
+//        #200
+//        `ZYNQ_VIP.write_data(32'hA0000024,4, 32'h5, resp);    
+//        #200
+//        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h1, resp);    
+//        #200  
+//        `ZYNQ_VIP.write_data(32'hA0000028,4, 32'h0, resp);         
             
-        #50000;
+//        #50000;
+        `ZYNQ_VIP.read_data(32'hA0000108,4, read_data, resp); 
+        #500;
+         `ZYNQ_VIP.read_data(32'hA0000108,4, read_data, resp);  
+        #500;       
+        
         //This drives the LEDs on the GPIO output 
        `ZYNQ_VIP.write_data(32'hA0000140,4, 32'h55, resp); 
         `ZYNQ_VIP.read_data(32'hA0000140,4, read_data, resp); 

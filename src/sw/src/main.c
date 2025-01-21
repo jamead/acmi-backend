@@ -199,9 +199,9 @@ void main_thread(void *p)
 
 
     // Start the PSC Status Thread.  Handles incoming commands from IOC
-    vTaskDelay(pdMS_TO_TICKS(100));
-    xil_printf("\r\n");
-    sys_thread_new("psc_status_thread", psc_status_thread, 0,THREAD_STACKSIZE, 2);
+    //vTaskDelay(pdMS_TO_TICKS(100));
+    //xil_printf("\r\n");
+    //sys_thread_new("psc_status_thread", psc_status_thread, 0,THREAD_STACKSIZE, 2);
 
 
     // Delay for 100ms
@@ -270,11 +270,19 @@ void read_artix_fifo() {
 
     int i;
 
-    int regval, wordcnt;
+    int regval, wordcnt, pollcnt;
 
+    pollcnt = 0;
+    xil_printf("Read Artix FIFO...\r\n");
+    do {
+    	wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
+        usleep(1000);
+        xil_printf("PollCnt: %d\r\n", pollcnt);
+    	pollcnt++;
+    } while ((wordcnt == 0) && (pollcnt < 3000));
 
-    wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
-    xil_printf("Num FIFO Words: %d\r\n", wordcnt);
+    xil_printf("PollCnt: %d     Num FIFO Words: %d\r\n", pollcnt, wordcnt);
+
 
     for (i=0;i<20;i++) {
         //chA and chB are in a single 32 bit word
@@ -319,7 +327,7 @@ void write_artix_spi()
 int main()
 {
 
-    u32 ts_s, ts_ns, i, wordcnt;
+    u32 ts_s, ts_ns, wordcnt;
 
 	xil_printf("zuBPM ...\r\n");
     print_firmware_version();
@@ -352,15 +360,17 @@ int main()
 
 
     //read Timestamp
-    while (1) { //for (i=0;i<100;i++) {
+    //while (1) { //for (i=0;i<100;i++) {
       ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
       ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
       xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
-      write_artix_spi();
-      read_artix_fifo();
+      //write_artix_spi();
+
+      //usleep(10000);
+      //read_artix_fifo();
 
       sleep(1);
-    }
+    //}
 
 
     // TODO:  This doesn't work

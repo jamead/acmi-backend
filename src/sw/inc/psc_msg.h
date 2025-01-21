@@ -19,7 +19,7 @@
 //This message is for ADC Live waveform
 //10000 pts * 4vals * 2bytes/val
 #define MSGID51 51 
-#define MSGID51LEN 80000   //in bytes
+#define MSGID51LEN 20000   //in bytes
 
 //This message is for TbT waveform
 //1024 pts * 7vals * 4bytes/val (a,b,c,d,x,y,sum)

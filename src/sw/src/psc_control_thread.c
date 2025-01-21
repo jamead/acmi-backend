@@ -38,9 +38,117 @@ void set_eventno(u32 msgVal) {
 }
 
 
+void soft_trig()
+{
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x0);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+
+}
+
+void read_artix_eeprom_settings()
+{
+
+	u32 spi_addr, spi_data;
+
+    spi_data = 1;
+    spi_addr = EEPROM_READALL;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, spi_data);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, spi_addr);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+	usleep(5000);
+
+}
 
 
 
+void write_artix_eeprom(u32 addr, s32 data)
+{
+
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, data);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, addr);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+	usleep(5000);
+	//write the EEPROM Trig Artix SPI register to initiate EEPROM transaction
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, EEPROM_TRIG);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+	usleep(10000);
+
+
+}
+
+
+
+void write_eeprom(u32 msgAddr, s32 msgData)
+{
+	u32 spi_addr, spi_data;
+	u32 eeprom_data, eeprom_addr;
+
+	//subtract PSC offset address of 256 to get EEPROM address
+	eeprom_addr = msgAddr - 256;
+
+	//Put EEPROM in write mode
+	spi_data = EEPROM_OPCODE_WREN << 24;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+    //Write 1st byte
+    eeprom_data = (msgData & 0xFF000000) >> 24;
+    spi_data = (EEPROM_OPCODE_WRITE<<24) | (eeprom_addr++<<8) | eeprom_data;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+
+	//Put EEPROM in write mode
+	spi_data = EEPROM_OPCODE_WREN << 24;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+    //Write 2nd byte
+    eeprom_data = (msgData & 0x00FF0000) >> 16;
+    spi_data = (EEPROM_OPCODE_WRITE<<24) | (eeprom_addr++<<8) | eeprom_data;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+
+	//Put EEPROM in write mode
+	spi_data = EEPROM_OPCODE_WREN << 24;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+    //Write 3nd byte
+    eeprom_data = (msgData & 0x0000FF00) >> 8;
+    spi_data = (EEPROM_OPCODE_WRITE<<24) | (eeprom_addr++<<8) | eeprom_data;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+
+	//Put EEPROM in write mode
+	spi_data = EEPROM_OPCODE_WREN << 24;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+    //Write 4th byte
+    eeprom_data = (msgData & 0x000000FF);
+    spi_data = (EEPROM_OPCODE_WRITE<<24) | (eeprom_addr++<<8) | eeprom_data;
+    spi_addr = EEPROM_WRDATA;
+    xil_printf("EEPROM: spi_addr=%8x  spi_data=%8x\r\n",spi_addr, spi_data);
+    write_artix_eeprom(spi_addr, spi_data);
+
+
+    //Read in new EEPROM settings
+    read_artix_eeprom_settings();
+
+
+
+
+}
 
 
 
@@ -120,11 +228,15 @@ reconnect:
         set_fpleds(1);
         set_fpleds(0);
 
+        if ((MsgAddr >= 256) && (MsgAddr <= 452)) {
+              xil_printf("Writing Artix EEPROM...\r\n");
+              write_eeprom(MsgAddr,MsgData);
+        }
 
         switch(MsgAddr) {
 			case SOFT_TRIG_MSG1:
 				xil_printf("Soft Trigger Message:   Value=%d\r\n",MsgData);
-
+			    soft_trig();
                 break;
 
 

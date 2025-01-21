@@ -33,7 +33,7 @@ component wvfm_fifo
     dout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
-    rd_data_count : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    rd_data_count : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
   );
 end component; 
 
@@ -44,7 +44,8 @@ end component;
   signal fifo_rdstr_prev  : std_logic  := '0';
   signal fifo_rdstr_fe    : std_logic  := '0';
   signal fifo_din         : std_logic_vector(15 downto 0) := 16d"0";
-  signal fifo_wren        : std_logic := '0';  
+  signal fifo_wren        : std_logic := '0'; 
+  signal fifo_readcnt     : std_logic_vector(14 downto 0); 
 
   
 
@@ -55,11 +56,14 @@ end component;
   attribute mark_debug of gth_rx_data: signal is "true";
   attribute mark_debug of gth_rx_data_enb: signal is "true";
   attribute mark_debug of fifo_rdcnt: signal is "true";
-
+  attribute mark_debug of fifo_dout: signal is "true";
+  attribute mark_debug of fifo_rdstr_fe: signal is "true";
+  attribute mark_debug of fifo_rst: signal is "true";
+  
 
 begin
 
-
+fifo_rdcnt <= '0' & fifo_readcnt;
 
 
 --since fifo is fall-through mode, want the rdstr
@@ -87,11 +91,11 @@ fifo_inst : wvfm_fifo
     rd_clk => sys_clk,
     din => gth_rx_data, 
     wr_en => gth_rx_data_enb, 
-    rd_en => fifo_rdstr_fe,
+    rd_en => fifo_rdstr, --fifo_rdstr_fe,
     dout => fifo_dout,
     full => open,
     empty => open,
-    rd_data_count => fifo_rdcnt
+    rd_data_count => fifo_readcnt
   );
 
 
