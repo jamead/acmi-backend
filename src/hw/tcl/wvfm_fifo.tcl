@@ -67,9 +67,9 @@ set_property -dict [list \
   CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} \
   CONFIG.Input_Data_Width {32} \
   CONFIG.Input_Depth {32768} \
-  CONFIG.Performance_Options {First_Word_Fall_Through} \
+  CONFIG.Performance_Options {Standard_FIFO} \
   CONFIG.Read_Data_Count {true} \
-  CONFIG.Use_Extra_Logic {true} \
+  CONFIG.Use_Extra_Logic {false} \
 ] [get_ips wvfm_fifo]
 
 # Runtime Parameters
