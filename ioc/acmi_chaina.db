@@ -876,31 +876,28 @@ record(ai,"$(P){ACMI:$(NO)}EE:TP1_pos_level-I") {
 }
 
 
-
-record(longout,"$(P){ACMI:$(NO)}EE:TP1_neg_level-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_pos_level-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 404")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:TP1_neg_level-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_pos_level-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 404")
     field(SCAN, "I/O Intr")
 }
 
-
-
-record(longout,"$(P){ACMI:$(NO)}EE:TP2_pos_level-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:TP3_pos_level-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 408")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:TP2_pos_level-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:TP3_pos_level-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 408")
@@ -908,15 +905,14 @@ record(ai,"$(P){ACMI:$(NO)}EE:TP2_pos_level-I") {
 }
 
 
-
-record(longout,"$(P){ACMI:$(NO)}EE:TP2_neg_level-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:TP1_neg_level-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 412")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:TP2_neg_level-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:TP1_neg_level-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 412")
@@ -924,21 +920,19 @@ record(ai,"$(P){ACMI:$(NO)}EE:TP2_neg_level-I") {
 }
 
 
-
-record(longout,"$(P){ACMI:$(NO)}EE:TP3_pos_level-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:TP2_neg_level-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 416")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:TP3_pos_level-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:TP2_neg_level-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 416")
     field(SCAN, "I/O Intr")
 }
-
 
 
 record(longout,"$(P){ACMI:$(NO)}EE:TP3_neg_level-SP") {
