@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <sleep.h>
 #include "xil_cache.h"
 #include "xparameters.h"
@@ -31,6 +32,8 @@
 
 
 #define PORT  20
+
+extern bool wvfm_debug;
 
 
 
@@ -72,6 +75,7 @@ void ReadChainA(char *msg) {
     int i;
     u32 *msg_u32ptr;
     u32 regval, wordcnt, pollcnt;
+    u32 ts_s, ts_ns;
 
     //write the PSC Header
      msg_u32ptr = (u32 *)msg;
@@ -84,34 +88,46 @@ void ReadChainA(char *msg) {
 
 
      pollcnt = 0;
-     xil_printf("Read Artix FIFO...\r\n");
+     //Read Timestamp
+     ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
+     ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
+     if (wvfm_debug) {
+    	 xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
+         xil_printf("Read Artix FIFO...\r\n");
+     }
+
      do {
      	wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
         usleep(1000);
-        //xil_printf("PollCnt: %d\r\n", pollcnt);
+        if (wvfm_debug) xil_printf("PollCnt: %d\r\n", pollcnt);
      	pollcnt++;
      } while ((wordcnt == 0) && (pollcnt < 5000));
 
-     xil_printf("PollCnt: %d     Num FIFO Words: %d\r\n", pollcnt, wordcnt);
+     //xil_printf("PollCnt: %d     Num FIFO Words: %d\r\n", pollcnt, wordcnt);
 
      if (wordcnt > 16000) {
        for (i=0;i<16258;i++) {
         //read FIFO
      	regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
-     	if (i<40)
+     	if ((i<64) && (wvfm_debug))
      	  xil_printf("%d:  %x\r\n", i*4,regval);
-     	*msg_u32ptr++ = regval;
+     	if (i==37)  //over write word #37 from Artix with EVR Timestamp sec
+     	   *msg_u32ptr++ = ts_s;
+     	else if (i==38) //overwrite word #38 from Artix with EVR Timestamp ns
+     	   *msg_u32ptr++ = ts_ns;
+     	else
+     	   *msg_u32ptr++ = regval;
        }
      }
 
-     xil_printf("Resetting FIFO...\r\n");
+     if (wvfm_debug) xil_printf("Resetting FIFO...\r\n");
      Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 1);
      usleep(1);
      Xil_Out32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_RST_REG, 0);
      usleep(10);
 
      wordcnt = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_CNT_REG);
-     xil_printf("Num FIFO Words: %d\r\n", wordcnt);
+     if (wvfm_debug) xil_printf("Num FIFO Words: %d\r\n", wordcnt);
 
 
 
@@ -189,7 +205,7 @@ reconnect:
         //write out chainA data (msg51)
         Host2NetworkConvWvfm(msgid51_buf,sizeof(msgid51_buf)+MSGHDRLEN);
         n = write(newsockfd,msgid51_buf,MSGID51LEN+MSGHDRLEN);
-        xil_printf("Wrote Chain A waveform\r\n");
+        //xil_printf("Wrote Chain A waveform\r\n");
         if (n < 0) {
         	printf("PSC Waveform: ERROR writing MSG 51 - ADC Waveform\n");
         	close(newsockfd);

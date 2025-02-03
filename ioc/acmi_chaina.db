@@ -1078,6 +1078,18 @@ record(ai,"$(P){ACMI:$(NO)}EE:crc-I") {
 }
 
 
+#############################
+### Beam OOW Waveform 
+#############################
+record(waveform,"$(P){ACMI:$(NO)}beamOOW_wfvm-I") {
+    field(DTYP, "PSC Block I32 In")
+    field(INP , "@Wfm 51 512")
+    field(SCAN,"I/O Intr")
+    field(FTVL,"DOUBLE")
+    field(NELM,"128")     
+}
+
+
 
 
 #############################
@@ -1088,7 +1100,7 @@ record(waveform,"$(P){ACMI:$(NO)}ADC_wfvm-I") {
     field(INP , "@Wfm 51 1024 ")
     field(SCAN,"I/O Intr")
     field(FTVL,"DOUBLE")
-    field(NELM,"1000")     
+    field(NELM,"4000")     
 }
 
 

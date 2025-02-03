@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <sleep.h>
 #include "xiicps.h"
 #include "xsysmonpsu.h"
@@ -21,9 +22,12 @@
 
 /* Hardware support includes */
 #include "../inc/zubpm_defs.h"
+#include "../inc/pl_regs.h"
+#include "../inc/psc_msg.h"
 
 
 extern ip_t ip_settings;
+extern bool wvfm_debug;
 
 
 typedef struct {
@@ -82,6 +86,25 @@ void dump_eeprom(void)
   xil_printf("Reading EEPROM...\r\n");
   eeprom_dump();
 }
+
+
+void dump_waveform(void)
+{
+  wvfm_debug = !wvfm_debug;
+}
+
+
+void reset_artix_fiber(void)
+{
+	//EVR reset
+	xil_printf("Resetting Fiber Link...   ");
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, 2);
+    usleep(1000);
+    xil_printf("Done...\r\n");
+}
+
+
 
 
 void program_ip(void)
@@ -164,7 +187,9 @@ void menu_thread()
 
     static const menu_entry_t menu[] = {
 	    {'A', "Dump EEPROM", dump_eeprom},
-		{'B', "Program IP Settings", program_ip}
+		{'B', "Program IP Settings", program_ip},
+	    {'C', "Dump Waveform", dump_waveform},
+	    {'D', "Reset Fiber Link", reset_artix_fiber}
 	};
 	static const size_t menulen = sizeof(menu)/sizeof(menu_entry_t);
 

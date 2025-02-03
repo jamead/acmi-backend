@@ -1,5 +1,6 @@
 
 #include <sleep.h>
+#include <stdbool.h>
 #include "netif/xadapter.h"
 //#include "platform_config.h"
 #include "xil_printf.h"
@@ -61,7 +62,8 @@ char msgid53_buf[MSGID53LEN];
 char msgid54_buf[MSGID54LEN];
 char msgid55_buf[MSGID55LEN];
 
-float thermistors[6];
+//float thermistors[6];
+bool wvfm_debug;
 
 
 
@@ -328,10 +330,12 @@ int main()
 {
 
     u32 ts_s, ts_ns, wordcnt;
+    u32 i;
 
-	xil_printf("zuBPM ...\r\n");
+	xil_printf("ACMI Backend ...\r\n");
     print_firmware_version();
 
+    wvfm_debug = false;
 
 	init_i2c();
 	init_sysmon();
@@ -360,10 +364,12 @@ int main()
 
 
     //read Timestamp
-    //while (1) { //for (i=0;i<100;i++) {
+    for (i=0;i<5;i++) {
       ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
       ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
       xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
+      sleep(1);
+    }
       //write_artix_spi();
 
       //usleep(10000);

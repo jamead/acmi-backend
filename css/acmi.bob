@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2025-01-21 14:00:58 by mead-->
+<!--Saved on 2025-02-03 13:56:27 by mead-->
 <display version="2.0.0">
   <name>ACMI</name>
-  <width>1000</width>
+  <width>1150</width>
   <height>800</height>
   <background_color>
     <color red="240" green="240" blue="240">
@@ -27,7 +27,7 @@ $(pv_value)</tooltip>
   <widget type="label" version="2.0.0">
     <name>Label_6</name>
     <text>ACMI</text>
-    <width>996</width>
+    <width>1150</width>
     <height>30</height>
     <font>
       <font family="Arial" style="BOLD" size="17.821782178217823">
@@ -60,8 +60,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_157</name>
             <text>Accum</text>
-            <x>627</x>
-            <y>39</y>
+            <x>519</x>
+            <y>47</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -75,8 +75,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_254</name>
             <pv_name>LN-BI{ACMI:A}beamaccum_limit_calc-I</pv_name>
-            <x>741</x>
-            <y>60</y>
+            <x>633</x>
+            <y>68</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -93,8 +93,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_158</name>
             <text>Accum Limit</text>
-            <x>631</x>
-            <y>58</y>
+            <x>523</x>
+            <y>66</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -108,8 +108,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_159</name>
             <text>EEPROM CRC</text>
-            <x>627</x>
-            <y>80</y>
+            <x>519</x>
+            <y>88</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -123,8 +123,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_255</name>
             <pv_name>LN-BI{ACMI:A}EEPROM:CRC-I</pv_name>
-            <x>742</x>
-            <y>81</y>
+            <x>634</x>
+            <y>89</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -141,8 +141,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_256</name>
             <pv_name>LN-BI{ACMI:A}acis-I</pv_name>
-            <x>496</x>
-            <y>103</y>
+            <x>388</x>
+            <y>111</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -160,8 +160,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_160</name>
             <text>ACIS</text>
-            <x>381</x>
-            <y>102</y>
+            <x>273</x>
+            <y>110</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -174,16 +174,16 @@ $(pv_value)</tooltip>
           </widget>
           <widget type="xyplot" version="3.0.0">
             <name>X/Y Plot</name>
-            <x>99</x>
-            <y>399</y>
-            <width>798</width>
+            <x>28</x>
+            <y>473</y>
+            <width>1014</width>
             <title>ADC Waveform</title>
             <x_axis>
               <title>Sample Number</title>
               <autoscale>false</autoscale>
               <log_scale>false</log_scale>
               <minimum>0.0</minimum>
-              <maximum>1000.0</maximum>
+              <maximum>16000.0</maximum>
               <show_grid>true</show_grid>
               <title_font>
                 <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
@@ -223,7 +223,7 @@ $(pv_value)</tooltip>
               <trace>
                 <name></name>
                 <x_pv></x_pv>
-                <y_pv>LN-BI{ACMI:A}ADC_wfvm-I</y_pv>
+                <y_pv>LN-BI{ACMI:A}ADC-Wfm</y_pv>
                 <err_pv></err_pv>
                 <axis>0</axis>
                 <trace_type>1</trace_type>
@@ -242,8 +242,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_235</name>
             <pv_name>LN-BI{ACMI:A}TP2:integral-I</pv_name>
-            <x>467</x>
-            <y>264</y>
+            <x>359</x>
+            <y>272</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -260,8 +260,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_236</name>
             <pv_name>LN-BI{ACMI:A}TP2:fwhm-I</pv_name>
-            <x>467</x>
-            <y>285</y>
+            <x>359</x>
+            <y>293</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -278,8 +278,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_237</name>
             <pv_name>LN-BI{ACMI:A}TP2:peak-index-I</pv_name>
-            <x>467</x>
-            <y>306</y>
+            <x>359</x>
+            <y>314</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -296,8 +296,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_150</name>
             <text>Test Pulse 3</text>
-            <x>574</x>
-            <y>197</y>
+            <x>466</x>
+            <y>205</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -311,8 +311,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_238</name>
             <pv_name>LN-BI{ACMI:A}TP3:baseline-I</pv_name>
-            <x>579</x>
-            <y>223</y>
+            <x>471</x>
+            <y>231</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -329,8 +329,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_239</name>
             <pv_name>LN-BI{ACMI:A}TP3:peak-I</pv_name>
-            <x>579</x>
-            <y>244</y>
+            <x>471</x>
+            <y>252</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -347,8 +347,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_240</name>
             <pv_name>LN-BI{ACMI:A}TP3:integral-I</pv_name>
-            <x>579</x>
-            <y>265</y>
+            <x>471</x>
+            <y>273</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -365,8 +365,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_241</name>
             <pv_name>LN-BI{ACMI:A}TP3:fwhm-I</pv_name>
-            <x>579</x>
-            <y>286</y>
+            <x>471</x>
+            <y>294</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -383,8 +383,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_242</name>
             <pv_name>LN-BI{ACMI:A}TP3:peak-index-I</pv_name>
-            <x>579</x>
-            <y>307</y>
+            <x>471</x>
+            <y>315</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -401,8 +401,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_151</name>
             <text>Beam OOW</text>
-            <x>688</x>
-            <y>197</y>
+            <x>580</x>
+            <y>205</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -416,8 +416,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_243</name>
             <pv_name>LN-BI{ACMI:A}BEAMOOW:baseline-I</pv_name>
-            <x>693</x>
-            <y>223</y>
+            <x>585</x>
+            <y>231</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -434,8 +434,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_244</name>
             <pv_name>LN-BI{ACMI:A}BEAMOOW:peak-I</pv_name>
-            <x>693</x>
-            <y>244</y>
+            <x>585</x>
+            <y>252</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -452,8 +452,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_245</name>
             <pv_name>LN-BI{ACMI:A}BEAMOOW:integral-I</pv_name>
-            <x>693</x>
-            <y>265</y>
+            <x>585</x>
+            <y>273</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -470,8 +470,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_246</name>
             <pv_name>LN-BI{ACMI:A}BEAMOOW:fwhm-I</pv_name>
-            <x>693</x>
-            <y>286</y>
+            <x>585</x>
+            <y>294</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -488,8 +488,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_247</name>
             <pv_name>LN-BI{ACMI:A}BEAMOOW:peak-index-I</pv_name>
-            <x>693</x>
-            <y>307</y>
+            <x>585</x>
+            <y>315</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -506,8 +506,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_248</name>
             <pv_name>LN-BI{ACMI:A}faults_live-I</pv_name>
-            <x>496</x>
-            <y>39</y>
+            <x>388</x>
+            <y>47</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -525,8 +525,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_152</name>
             <text>Faults live</text>
-            <x>381</x>
-            <y>39</y>
+            <x>273</x>
+            <y>47</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -540,8 +540,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_249</name>
             <pv_name>LN-BI{ACMI:A}faults_lat-I</pv_name>
-            <x>495</x>
-            <y>60</y>
+            <x>387</x>
+            <y>68</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -559,8 +559,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_153</name>
             <text>Faults latched</text>
-            <x>385</x>
-            <y>58</y>
+            <x>277</x>
+            <y>66</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -574,8 +574,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_154</name>
             <text>Faults TP</text>
-            <x>381</x>
-            <y>80</y>
+            <x>273</x>
+            <y>88</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -589,8 +589,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_250</name>
             <pv_name>LN-BI{ACMI:A}faults_tp-I</pv_name>
-            <x>496</x>
-            <y>81</y>
+            <x>388</x>
+            <y>89</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -608,8 +608,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_155</name>
             <text>StartUp Count</text>
-            <x>134</x>
-            <y>109</y>
+            <x>26</x>
+            <y>117</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -623,8 +623,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_251</name>
             <pv_name>LN-BI{ACMI:A}startup_cnt-I</pv_name>
-            <x>239</x>
-            <y>112</y>
+            <x>131</x>
+            <y>120</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -641,8 +641,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_252</name>
             <pv_name>LN-BI{ACMI:A}timestamp-I</pv_name>
-            <x>239</x>
-            <y>91</y>
+            <x>131</x>
+            <y>99</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -659,8 +659,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_156</name>
             <text>Timestamp</text>
-            <x>134</x>
-            <y>91</y>
+            <x>26</x>
+            <y>99</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -674,8 +674,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_253</name>
             <pv_name>LN-BI{ACMI:A}accum-I</pv_name>
-            <x>742</x>
-            <y>39</y>
+            <x>634</x>
+            <y>47</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -692,8 +692,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_129</name>
             <text>Header</text>
-            <x>130</x>
-            <y>39</y>
+            <x>22</x>
+            <y>47</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -707,8 +707,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_131</name>
             <text>FPGA Ver</text>
-            <x>134</x>
-            <y>57</y>
+            <x>26</x>
+            <y>65</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -722,8 +722,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_221</name>
             <pv_name>LN-BI{ACMI:A}fpgaver-I</pv_name>
-            <x>239</x>
-            <y>60</y>
+            <x>131</x>
+            <y>68</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -740,8 +740,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_219</name>
             <pv_name>LN-BI{ACMI:A}header-I</pv_name>
-            <x>239</x>
-            <y>39</y>
+            <x>131</x>
+            <y>47</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -759,8 +759,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_138</name>
             <text>Test Pulse 1</text>
-            <x>343</x>
-            <y>197</y>
+            <x>235</x>
+            <y>205</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -774,8 +774,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_228</name>
             <pv_name>LN-BI{ACMI:A}TP1:baseline-I</pv_name>
-            <x>352</x>
-            <y>222</y>
+            <x>244</x>
+            <y>230</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -792,8 +792,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_229</name>
             <pv_name>LN-BI{ACMI:A}TP1:peak-I</pv_name>
-            <x>352</x>
-            <y>243</y>
+            <x>244</x>
+            <y>251</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -810,8 +810,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_230</name>
             <pv_name>LN-BI{ACMI:A}TP1:integral-I</pv_name>
-            <x>352</x>
-            <y>264</y>
+            <x>244</x>
+            <y>272</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -828,8 +828,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_231</name>
             <pv_name>LN-BI{ACMI:A}TP1:fwhm-I</pv_name>
-            <x>352</x>
-            <y>285</y>
+            <x>244</x>
+            <y>293</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -846,8 +846,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_232</name>
             <pv_name>LN-BI{ACMI:A}TP1:peak-index-I</pv_name>
-            <x>352</x>
-            <y>306</y>
+            <x>244</x>
+            <y>314</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -864,8 +864,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_132</name>
             <text>Beam</text>
-            <x>214</x>
-            <y>196</y>
+            <x>106</x>
+            <y>204</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -879,8 +879,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_133</name>
             <text>Baseline</text>
-            <x>130</x>
-            <y>222</y>
+            <x>22</x>
+            <y>230</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -894,8 +894,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_222</name>
             <pv_name>LN-BI{ACMI:A}BEAM:baseline-I</pv_name>
-            <x>238</x>
-            <y>222</y>
+            <x>130</x>
+            <y>230</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -912,8 +912,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_224</name>
             <pv_name>LN-BI{ACMI:A}BEAM:peak-I</pv_name>
-            <x>238</x>
-            <y>243</y>
+            <x>130</x>
+            <y>251</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -930,8 +930,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_134</name>
             <text>Peak</text>
-            <x>130</x>
-            <y>243</y>
+            <x>22</x>
+            <y>251</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -945,8 +945,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_135</name>
             <text>Integral</text>
-            <x>130</x>
-            <y>264</y>
+            <x>22</x>
+            <y>272</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -960,8 +960,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_225</name>
             <pv_name>LN-BI{ACMI:A}BEAM:integral-I</pv_name>
-            <x>238</x>
-            <y>264</y>
+            <x>130</x>
+            <y>272</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -978,8 +978,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_226</name>
             <pv_name>LN-BI{ACMI:A}BEAM:fwhm-I</pv_name>
-            <x>238</x>
-            <y>285</y>
+            <x>130</x>
+            <y>293</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -996,8 +996,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_136</name>
             <text>FWHM</text>
-            <x>130</x>
-            <y>285</y>
+            <x>22</x>
+            <y>293</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -1011,8 +1011,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_227</name>
             <pv_name>LN-BI{ACMI:A}BEAM:peak-index-I</pv_name>
-            <x>238</x>
-            <y>306</y>
+            <x>130</x>
+            <y>314</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -1029,8 +1029,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_137</name>
             <text>Peak Index</text>
-            <x>130</x>
-            <y>306</y>
+            <x>22</x>
+            <y>314</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -1044,8 +1044,8 @@ $(pv_value)</tooltip>
           <widget type="label" version="2.0.0">
             <name>Label_144</name>
             <text>Test Pulse 2</text>
-            <x>462</x>
-            <y>197</y>
+            <x>354</x>
+            <y>205</y>
             <width>96</width>
             <horizontal_alignment>2</horizontal_alignment>
             <vertical_alignment>1</vertical_alignment>
@@ -1059,8 +1059,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_233</name>
             <pv_name>LN-BI{ACMI:A}TP2:baseline-I</pv_name>
-            <x>467</x>
-            <y>222</y>
+            <x>359</x>
+            <y>230</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -1077,8 +1077,8 @@ $(pv_value)</tooltip>
           <widget type="textupdate" version="2.0.0">
             <name>Text Update_234</name>
             <pv_name>LN-BI{ACMI:A}TP2:peak-I</pv_name>
-            <x>467</x>
-            <y>243</y>
+            <x>359</x>
+            <y>251</y>
             <background_color>
               <color red="192" green="192" blue="192">
               </color>
@@ -1091,6 +1091,74 @@ $(pv_value)</tooltip>
               <color red="0" green="128" blue="255">
               </color>
             </border_color>
+          </widget>
+          <widget type="xyplot" version="3.0.0">
+            <name>X/Y Plot_1</name>
+            <x>754</x>
+            <y>155</y>
+            <width>360</width>
+            <height>282</height>
+            <title>Beam OOW Waveform</title>
+            <x_axis>
+              <title>Sample Number</title>
+              <autoscale>false</autoscale>
+              <log_scale>false</log_scale>
+              <minimum>0.0</minimum>
+              <maximum>128.0</maximum>
+              <show_grid>true</show_grid>
+              <title_font>
+                <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                </font>
+              </title_font>
+              <scale_font>
+                <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                </font>
+              </scale_font>
+              <visible>true</visible>
+            </x_axis>
+            <y_axes>
+              <y_axis>
+                <title>adu</title>
+                <autoscale>true</autoscale>
+                <log_scale>false</log_scale>
+                <minimum>0.0</minimum>
+                <maximum>100.0</maximum>
+                <show_grid>true</show_grid>
+                <title_font>
+                  <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+                  </font>
+                </title_font>
+                <scale_font>
+                  <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+                  </font>
+                </scale_font>
+                <on_right>false</on_right>
+                <visible>true</visible>
+                <color>
+                  <color name="Text" red="0" green="0" blue="0">
+                  </color>
+                </color>
+              </y_axis>
+            </y_axes>
+            <traces>
+              <trace>
+                <name></name>
+                <x_pv></x_pv>
+                <y_pv>LN-BI{ACMI:A}beamOOW_wfvm-I</y_pv>
+                <err_pv></err_pv>
+                <axis>0</axis>
+                <trace_type>1</trace_type>
+                <color>
+                  <color red="0" green="0" blue="255">
+                  </color>
+                </color>
+                <line_width>1</line_width>
+                <line_style>0</line_style>
+                <point_type>0</point_type>
+                <point_size>10</point_size>
+                <visible>true</visible>
+              </trace>
+            </traces>
           </widget>
         </children>
       </tab>
@@ -3053,7 +3121,7 @@ $(pv_value)</tooltip>
       </tab>
     </tabs>
     <y>48</y>
-    <width>996</width>
-    <height>738</height>
+    <width>1146</width>
+    <height>846</height>
   </widget>
 </display>
