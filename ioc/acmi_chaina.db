@@ -445,14 +445,14 @@ record(ai,"$(P){ACMI:$(NO)}EE:TP3_adc_delay-I") {
 
 
 
-record(longout,"$(P){ACMI:$(NO)}EE:beam_adc_delay-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:BEAM:delay-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 296")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:beam_adc_delay-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:BEAM:delay-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 296")
@@ -461,14 +461,14 @@ record(ai,"$(P){ACMI:$(NO)}EE:beam_adc_delay-I") {
 
 
 
-record(longout,"$(P){ACMI:$(NO)}EE:beamoow_thresh-SP") {
+record(longout,"$(P){ACMI:$(NO)}EE:COW:thresh-SP") {
     field(DESC, "EEPROM write")
     field(DTYP, "PSC Single I32")
     field(OUT , "@Tx 1 300")
     field(FLNK, "$(P){ACMI:$(NO)}GoRegSingleWrite")
 }
 
-record(ai,"$(P){ACMI:$(NO)}EE:beamoow_thresh-I") {
+record(ai,"$(P){ACMI:$(NO)}EE:COW:thresh-I") {
     field(DESC, "EEPROM readback")
     field(DTYP, "PSC Reg")
     field(INP , "@Wfm 51 300")
@@ -1095,12 +1095,12 @@ record(waveform,"$(P){ACMI:$(NO)}beamOOW_wfvm-I") {
 #############################
 ### ADC Waveform
 #############################
-record(waveform,"$(P){ACMI:$(NO)}ADC_wfvm-I") {
+record(waveform,"$(P){ACMI:$(NO)}ADC-Wfm") {
     field(DTYP, "PSC Block I32 In")
     field(INP , "@Wfm 51 1024 ")
     field(SCAN,"I/O Intr")
     field(FTVL,"DOUBLE")
-    field(NELM,"4000")     
+    field(NELM,"16000")     
 }
 
 

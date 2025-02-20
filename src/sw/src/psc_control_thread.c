@@ -30,14 +30,22 @@ void set_fpleds(u32 msgVal)  {
 
 
 
-
-
-
 void set_eventno(u32 msgVal) {
 	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_DMA_TRIGNUM_REG, msgVal);
 }
 
 
+void set_fp_trig_dly(u32 msgVal)
+{
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, msgVal);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x41);  //see Artix SPI register address map
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
+
+}
+
+
+/*
 void soft_trig()
 {
 	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
@@ -46,6 +54,7 @@ void soft_trig()
 	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
 
 }
+*/
 
 void read_artix_eeprom_settings()
 {
@@ -234,29 +243,30 @@ reconnect:
         }
 
         switch(MsgAddr) {
-			case SOFT_TRIG_MSG1:
-				xil_printf("Soft Trigger Message:   Value=%d\r\n",MsgData);
-			    soft_trig();
-                break;
-
 
             case EVENT_NO_MSG1:
-            	xil_printf("DMA Event Number Message:   Value=%d\r\n",MsgData);
+            	xil_printf("Set Event Number Message:   Value=%d\r\n",MsgData);
                 set_eventno(MsgData);
                 break;
 
+            case EVENT_DLY_MSG1:
+            	xil_printf("Set Event Delay Message:   Value=%d\r\n",MsgData);
+                break;
+
+            case FP_TRIG_DLY_MSG1:
+            	xil_printf("Set FP LEMO Trigger Delay Message:   Value=%d\r\n",MsgData);
+            	set_fp_trig_dly(MsgData);
+                break;
 
             case FP_LED_MSG1:
             	xil_printf("Setting FP LED:   Value=%d\r\n",MsgData);
-            	//set_fpleds(MsgData);
+            	set_fpleds(MsgData);
             	break;
 
-
-            case EVENT_SRC_SEL_MSG1:
-              	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
-              	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
-              	break;
-
+            //case EVENT_SRC_SEL_MSG1:
+            //  	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
+            //  	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
+            //  	break;
 
 
             default:

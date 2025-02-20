@@ -109,8 +109,8 @@ void ReadChainA(char *msg) {
        for (i=0;i<16258;i++) {
         //read FIFO
      	regval = Xil_In32(XPAR_M_AXI_BASEADDR + CHAINA_FIFO_DATA_REG);
-     	if ((i<64) && (wvfm_debug))
-     	  xil_printf("%d:  %x\r\n", i*4,regval);
+     	if ((i<128) && (wvfm_debug))
+     	  xil_printf("%d:  %d\r\n", i*4,regval);
      	if (i==37)  //over write word #37 from Artix with EVR Timestamp sec
      	   *msg_u32ptr++ = ts_s;
      	else if (i==38) //overwrite word #38 from Artix with EVR Timestamp ns

@@ -143,6 +143,13 @@ typedef struct StatusMsg {
 
 
 // Control Message Offsets
+#define EVENT_NO_MSG1 0
+#define EVENT_DLY_MSG1 4
+#define FP_TRIG_DLY_MSG1 8
+#define FP_LED_MSG1 12
+
+
+/*
 #define SOFT_TRIG_MSG1 0
 #define FP_LED_MSG1 4
 #define PILOT_TONE_ENB_MSG1 8
@@ -172,7 +179,7 @@ typedef struct StatusMsg {
 #define COARSE_TRIG_DLY_MSG1 272
 #define TRIGTOBEAM_THRESH_MSG1 276
 #define EVENT_NO_MSG1 320
-
+*/
 
 
 
