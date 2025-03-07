@@ -26,6 +26,8 @@ entity gth_artix_io is
   reg_o            : in t_reg_o_chaina; 
   reg_i            : out t_reg_i_chaina;
   
+  evr_usr_trig     : in std_logic;
+  
   gth_txusr_clk    : out std_logic;
   gth_rxusr_clk    : out std_logic;
   
@@ -76,6 +78,7 @@ to_artix: entity work.artix_cntrl
     sys_clk => sys_clk, 
     gth_txusr_clk => gth_txusr_clk, 
     reset => sys_rst, 
+    evr_usr_trig => evr_usr_trig,
     addr => reg_o.spi_addr, 
     data => reg_o.spi_data,  
     we => reg_o.spi_we,  

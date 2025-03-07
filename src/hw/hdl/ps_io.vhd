@@ -29,6 +29,7 @@ entity ps_io is
 	 reg_o_evr         : out t_reg_o_evr;
 	 reg_i_evr         : in  t_reg_i_evr;
  
+     fe_trigsrc        : out std_logic;
      fp_leds           : out std_logic_vector(7 downto 0)
   );
 end ps_io;
@@ -67,8 +68,10 @@ reg_i.lat_ts_ns.val.data <= reg_i_evr.lat_ts_ns;
 reg_i.lat_ts_s.val.data <= reg_i_evr.lat_ts_s; 
 
 reg_o_evr.reset <= reg_o.evr_reset.data.data(0);
-reg_o_evr.dma_trigno <= reg_o.dma_trig_eventno.val.data;
-reg_o_evr.event_src_sel <= reg_o.event_src_sel.val.data(0);
+reg_o_evr.fe_trigno <= reg_o.fe_trig_eventno.val.data;
+reg_o_evr.fe_trigdly <= reg_o.fe_trig_delay.val.data;
+
+fe_trigsrc <= reg_o.event_src_sel.val.data(0);
 
 
 

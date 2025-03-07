@@ -151,18 +151,18 @@ reg {
   } lat_ts_s @0x5C;  
 
 reg {
-    desc="DMA Trigger Event Number";
+    desc="Front End (Artix) Trigger Event Number";
     default sw = rw;
     default hw = r;
     field {} val[8];
-  } dma_trig_eventno @0x60;  
+  } fe_trig_eventno @0x60;  
 
 reg {
-    desc="DMA Trigger Delay";
+    desc="Front End (Artix) Trigger Delay";
     default sw = rw;
     default hw = r;
     field {} val[32];
-  } dma_trig_delay @0x64;  
+  } fe_trig_delay @0x64;  
 
  reg {
     desc="Internal clock mode (tbt,fa,sa trig source) (0=int counters, 1=evr)";

@@ -88,9 +88,9 @@ void ReadChainA(char *msg) {
 
 
      pollcnt = 0;
-     //Read Timestamp
-     ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
-     ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
+     //Read latched Timestamp
+     ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_LAT_REG);
+     ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_LAT_REG);
      if (wvfm_debug) {
     	 xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
          xil_printf("Read Artix FIFO...\r\n");

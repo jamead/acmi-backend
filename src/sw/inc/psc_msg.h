@@ -147,6 +147,8 @@ typedef struct StatusMsg {
 #define EVENT_DLY_MSG1 4
 #define FP_TRIG_DLY_MSG1 8
 #define FP_LED_MSG1 12
+#define ACCUM_RESET_MSG1 16
+#define EVENT_SRC_SEL_MSG1 20  //0=internal, 1=EVR
 
 
 /*

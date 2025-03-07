@@ -40,6 +40,7 @@ entity evr_top is
   sys_clk        : in std_logic;
   sys_rst        : in std_logic;
   reg_o          : in t_reg_o_evr;
+  reg_i          : out t_reg_i_evr;
   --gth_reset      : in std_logic_vector(7 downto 0);
   
   gth_refclk_p   : in std_logic;
@@ -52,6 +53,7 @@ entity evr_top is
   --trignum        : in std_logic_vector(7 downto 0);
   trigdly        : in std_logic_vector(31 downto 0);
    
+
   tbt_trig       : out std_logic;
   fa_trig        : out std_logic;
   sa_trig        : out std_logic;
@@ -204,15 +206,18 @@ end component;
   signal txcnt                 : std_logic_vector(15 downto 0) := 16d"0";
   
   
-   signal tbt_trig_i        : std_logic;
-   signal datastream        : std_logic_vector(7 downto 0);
-   signal eventstream       : std_logic_vector(7 downto 0);
-   signal eventclock        : std_logic;
+  signal tbt_trig_i        : std_logic;
+  signal datastream        : std_logic_vector(7 downto 0);
+  signal eventstream       : std_logic_vector(7 downto 0);
+  signal eventclock        : std_logic;
    
-   signal prev_datastream   : std_logic_vector(3 downto 0);
-   signal cnt               : integer range 3 downto 0;
-   signal trigactive        : std_logic;
-   signal dma_trigno        : std_logic_vector(7 downto 0);
+  signal prev_datastream   : std_logic_vector(3 downto 0);
+  signal cnt               : integer range 3 downto 0;
+  signal trigactive        : std_logic;
+  signal fe_trigno         : std_logic_vector(7 downto 0);
+  signal fe_trigdly        : std_logic_vector(31 downto 0);
+  
+  signal usr_trig_last     : std_logic;
   
   
   
@@ -233,7 +238,8 @@ end component;
    attribute mark_debug of prev_datastream: signal is "true";
    attribute mark_debug of tbt_trig: signal is "true";
    attribute mark_debug of tbt_trig_i: signal is "true";
-   attribute mark_debug of dma_trigno: signal is "true";
+   attribute mark_debug of fe_trigno: signal is "true";
+   attribute mark_debug of fe_trigdly: signal is "true";
    attribute mark_debug of usr_trig: signal is "true";
 
 
@@ -243,7 +249,13 @@ begin
 
 evr_rcvd_clk <= gth_rxusr_clk;
 
-dma_trigno <= reg_o.dma_trigno;
+fe_trigno <= reg_o.fe_trigno;
+fe_trigdly <= reg_o.fe_trigdly;
+
+reg_i.ts_s <= timestamp(63 downto 32);
+reg_i.ts_ns <= timestamp(31 downto 0);
+        
+
 
 refclk0_buf : IBUFDS_GTE4
   generic map (
@@ -270,6 +282,27 @@ refclk0_buf : IBUFDS_GTE4
 --      DIV => "000",         -- 3-bit input: Dynamic divide Value
 --      I => gth_refclk_odiv2              -- 1-bit input: Buffer
 --   );
+
+
+
+--latch timestamp --...
+process (gth_rxusr_clk)
+begin
+  if (rising_edge(gth_rxusr_clk)) then
+    if (sys_rst = '1') then
+      usr_trig_last <= '0';
+    else
+      usr_trig_last <= usr_trig;
+      if (usr_trig = '1') and (usr_trig_last = '0') then
+        reg_i.lat_ts_s <= timestamp(63 downto 32);
+        reg_i.lat_ts_ns <= timestamp(31 downto 0);
+      end if;
+    end if;
+  end if;
+end process;
+
+
+
 
 
 
@@ -475,8 +508,8 @@ event_usr : EventReceiverChannel
        clock => gth_rxusr_clk,
        reset => sys_rst,
        eventstream => eventstream,
-       myevent => dma_trigno, --reg_o.dma_trigno, --trignum,
-       mydelay => trigdly, 
+       myevent => fe_trigno, 
+       mydelay => fe_trigdly, 
        mywidth => (x"00000175"),   -- //creates a pulse about 3us long
        mypolarity => ('0'),
        trigger => usr_trig

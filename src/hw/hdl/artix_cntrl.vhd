@@ -14,6 +14,7 @@ entity artix_cntrl is
     sys_clk         : in std_logic;
     gth_txusr_clk   : in std_logic;
     reset           : in std_logic;
+    evr_usr_trig    : in std_logic;
     addr            : in std_logic_vector(31 downto 0);
     data            : in std_logic_vector(31 downto 0);
     we              : in std_logic;
@@ -34,10 +35,19 @@ architecture behv of artix_cntrl is
    signal we_sync2  : std_logic;
    signal we_sync3  : std_logic;
    
+   signal trig_sync1  : std_logic;
+   signal trig_sync2  : std_logic;
+   signal trig_sync3  : std_logic; 
+   
+   
    attribute ASYNC_REG : string;
    attribute ASYNC_REG of we_sync1: signal is "true";
    attribute ASYNC_REG of we_sync2: signal is "true";
    attribute ASYNC_REG of we_sync3: signal is "true"; 
+   
+   attribute ASYNC_REG of trig_sync1: signal is "true";
+   attribute ASYNC_REG of trig_sync2: signal is "true";
+   attribute ASYNC_REG of trig_sync3: signal is "true";   
 
    attribute mark_debug     : string;
    attribute mark_debug of we: signal is "true";  
@@ -57,6 +67,18 @@ begin
 end process;
 
 
+sync_trig : process (gth_txusr_clk)
+begin
+  if (rising_edge(gth_txusr_clk)) then
+     trig_sync1 <= evr_usr_trig;
+     trig_sync2 <= trig_sync1;
+     trig_sync3 <= trig_sync2;
+  end if;
+end process;
+
+
+
+
 gen_data: process (gth_txusr_clk)
 begin 
   if (rising_edge(gth_txusr_clk)) then
@@ -70,7 +92,7 @@ begin
         when IDLE => 
           gth_tx_data <= 32d"0";
           gth_tx_data_enb <= '0';
-          if (we_sync3 = '0') and (we_sync2 = '1') then
+          if ((we_sync3 = '0') and (we_sync2 = '1')) or ((trig_sync3 = '0') and (trig_sync2 = '1')) then
             state <= tx_preamble;
           end if;
           

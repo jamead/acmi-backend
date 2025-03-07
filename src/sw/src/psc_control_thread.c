@@ -31,7 +31,12 @@ void set_fpleds(u32 msgVal)  {
 
 
 void set_eventno(u32 msgVal) {
-	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_DMA_TRIGNUM_REG, msgVal);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_FE_TRIGNUM_REG, msgVal);
+}
+
+
+void set_eventdly(u32 msgVal) {
+	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_FE_TRIGDLY_REG, msgVal);
 }
 
 
@@ -44,17 +49,17 @@ void set_fp_trig_dly(u32 msgVal)
 
 }
 
-
-/*
-void soft_trig()
+void reset_accum()
 {
 	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
-	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x0);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x51);
 	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x1);
 	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_WE, 0x0);
-
 }
-*/
+
+
+
+
 
 void read_artix_eeprom_settings()
 {
@@ -251,6 +256,7 @@ reconnect:
 
             case EVENT_DLY_MSG1:
             	xil_printf("Set Event Delay Message:   Value=%d\r\n",MsgData);
+            	set_eventdly(MsgData);
                 break;
 
             case FP_TRIG_DLY_MSG1:
@@ -263,10 +269,16 @@ reconnect:
             	set_fpleds(MsgData);
             	break;
 
-            //case EVENT_SRC_SEL_MSG1:
-            //  	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
-            //  	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
-            //  	break;
+            case ACCUM_RESET_MSG1:
+            	xil_printf("Resetting Accumulator:   Value=%d\r\n",MsgData);
+            	reset_accum(MsgData);
+            	break;
+
+
+            case EVENT_SRC_SEL_MSG1:
+              	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
+              	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
+              	break;
 
 
             default:
