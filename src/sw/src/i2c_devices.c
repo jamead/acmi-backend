@@ -67,7 +67,7 @@ s32 i2c_read(u8 *buf, u8 len, u8 addr) {
 #define IIC_MAC_REG 0xFA
 
 void i2c_get_mac_address(u8 *mac){
-	i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x80);
+	i2c_set_port_expander(I2C_PORTEXP0_ADDR,0x40);
     u8 buf[6] = {0};
     buf[0] = IIC_MAC_REG;
     i2c_write(buf,1,IIC_EEPROM_ADDR);
@@ -96,7 +96,7 @@ u8 i2c_eeprom_readByte(u8 addr){
 
 */
 void i2c_eeprom_writeBytes(u8 startAddr, u8 *data, u8 len){
-	i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x80);
+	i2c_set_port_expander(I2C_PORTEXP0_ADDR,0x40);
     u8 buf[len + 1];
     buf[0] = startAddr;
     for(int i = 0; i < len; i++) buf[i+1] = data[i];
@@ -106,7 +106,7 @@ void i2c_eeprom_writeBytes(u8 startAddr, u8 *data, u8 len){
 
 void i2c_eeprom_readBytes(u8 startAddr, u8 *data, u8 len){
 	u8 buf[] = {startAddr};
-	i2c_set_port_expander(I2C_PORTEXP1_ADDR,0x80);
+	i2c_set_port_expander(I2C_PORTEXP0_ADDR,0x40);
     i2c_write(buf,1,IIC_EEPROM_ADDR);
     i2c_read(data,len,IIC_EEPROM_ADDR);
     //u8 buf[] = {startAddr};
