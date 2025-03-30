@@ -89,8 +89,12 @@ void ReadChainA(char *msg) {
 
      pollcnt = 0;
      //Read latched Timestamp
-     ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_LAT_REG);
-     ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_LAT_REG);
+     //ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_LAT_REG);
+     //ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_LAT_REG);
+     //Read free running timestamp for now, not using EVR quite yet
+     ts_s = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_S_REG);
+     ts_ns = Xil_In32(XPAR_M_AXI_BASEADDR + EVR_TS_NS_REG);
+
      if (wvfm_debug) {
     	 xil_printf("ts= %d    %d\r\n",ts_s,ts_ns);
          xil_printf("Read Artix FIFO...\r\n");
@@ -194,9 +198,9 @@ reconnect:
 
 	while (1) {
 
-		//xil_printf("Wvfm: In main waveform loop...\r\n");
+		//xil_printf("Wvfm: Triggering Artix...\r\n");
 		loopcnt++;
-		vTaskDelay(pdMS_TO_TICKS(1000));
+		vTaskDelay(pdMS_TO_TICKS(900));
 		soft_trig_artix();
 
 

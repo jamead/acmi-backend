@@ -210,7 +210,7 @@ void write_lmk61e2()
       buf[0] = (char) ((regval & 0x00FF00) >> 8);
       buf[1] = (char) (regval & 0xFF);
       i2c_write(buf,2,0x5A);
-      printf("LMK61e2 Write = 0x%x\t    B0 = %x    B1 = %x\n",regval, buf[0], buf[1]);
+      //printf("LMK61e2 Write = 0x%x\t    B0 = %x    B1 = %x\n",regval, buf[0], buf[1]);
    };
 
 }
@@ -246,7 +246,7 @@ void write_si5347()
 		}
 	    data[0] = si5347_revd_registers[i].address & 0x00FF;
 	    data[1] = si5347_revd_registers[i].value;
-	    xil_printf("Writing si5347:   Addr=%x   Data=%x\r\n",data[0],data[1]);
+	    //xil_printf("Writing si5347:   Addr=%x   Data=%x\r\n",data[0],data[1]);
 
 	    //write(file,data,2);
 	    i2c_write(data,2,0x6C);

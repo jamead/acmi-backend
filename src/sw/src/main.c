@@ -203,7 +203,7 @@ void main_thread(void *p)
     // Start the PSC Status Thread.  Handles 1Hz status info
     vTaskDelay(pdMS_TO_TICKS(100));
     xil_printf("\r\n");
-    sys_thread_new("psc_status_thread", psc_status_thread, 0,THREAD_STACKSIZE, 2);
+    sys_thread_new("psc_status_thread", psc_status_thread, 0,THREAD_STACKSIZE, 1);
 
 
     // Delay for 100ms

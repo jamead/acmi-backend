@@ -25,7 +25,7 @@ dbLoadDatabase("$(BPMDIR)/dbd/pscdemo.dbd",0,0)
 pscdemo_registerRecordDeviceDriver(pdbbase) 
 
 # BPM IP address
-epicsEnvSet("ACMI_IP", "10.0.142.232");  #4009
+epicsEnvSet("ACMI_IP", "10.0.142.235");  #4009
 
 
 
