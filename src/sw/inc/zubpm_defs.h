@@ -68,6 +68,8 @@ void ltc2195_init();
 
 void dma_arm();
 void menu_thread();
+void set_eventno(u32);
+void set_eventdly(u32);
 void psc_control_thread();
 void psc_status_thread();
 void psc_wvfm_thread();

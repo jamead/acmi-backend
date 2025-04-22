@@ -174,7 +174,25 @@ void exec_menu(const char *head, const menu_entry_t *m, size_t m_len)
   }
 }
 
+void set_evr_trig()
+{
+	printf("Setting evr trig...\n");
+	int evrno,evrdly;
 
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_DATA, 0x1);
+	Xil_Out32(XPAR_M_AXI_BASEADDR + ARTIX_SPI_ADDR, 0x0);
+	printf("Enter event #: ");
+	scanf("%d",&evrno);
+	printf("%d\n", evrno);
+	printf("Enter event delay: ");
+	scanf("%d",&evrdly);
+	printf("%d\n",evrdly);
+
+	set_eventno(evrno);
+	set_eventdly(evrdly);
+
+	printf("successfully written to usr_evr\n");
+}
 
 
 
@@ -189,7 +207,8 @@ void menu_thread()
 	    {'A', "Dump EEPROM", dump_eeprom},
 		{'B', "Program IP Settings", program_ip},
 	    {'C', "Dump Waveform", dump_waveform},
-	    {'D', "Reset Fiber Link", reset_artix_fiber}
+	    {'D', "Reset Fiber Link", reset_artix_fiber},
+		{'E', "Set USR_EVR Trig", set_evr_trig}
 	};
 	static const size_t menulen = sizeof(menu)/sizeof(menu_entry_t);
 
