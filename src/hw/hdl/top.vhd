@@ -76,7 +76,8 @@ architecture behv of top is
   signal evr_sa_trig          : std_logic;
   signal evr_sa_trig_stretch  : std_logic;
   signal evr_gps_trig         : std_logic;
-  signal evr_usr_trig         : std_logic;  
+  signal evr_usr_trig         : std_logic;
+  signal evr_usr_trig_nodly   : std_logic;  
   signal evr_usr_trig_stretch : std_logic;
   signal evr_ts               : std_logic_vector(63 downto 0); 
   signal evr_rcvd_clk         : std_logic;
@@ -214,10 +215,11 @@ evr: entity work.evr_top
     fa_trig => evr_fa_trig, 
     sa_trig => evr_sa_trig, 
     usr_trig => evr_usr_trig, 
+    usr_trig_nodly => evr_usr_trig_nodly,
     gps_trig => evr_gps_trig, 
     timestamp => evr_ts,  
     evr_rcvd_clk => evr_rcvd_clk
-);	
+);
 
 
 

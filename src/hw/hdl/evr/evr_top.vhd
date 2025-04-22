@@ -58,6 +58,7 @@ entity evr_top is
   fa_trig        : out std_logic;
   sa_trig        : out std_logic;
   usr_trig       : out std_logic;
+  usr_trig_nodly : out std_logic;
   gps_trig       : out std_logic;
   timestamp      : out std_logic_vector(63 downto 0);
     
@@ -515,6 +516,17 @@ event_usr : EventReceiverChannel
        trigger => usr_trig
 );
 
+event_usr_nodly : EventReceiverChannel --creusr_trig_nodlyate a evr trig w/o delay
+    port map(
+       clock => gth_rxusr_clk,
+       reset => sys_rst,
+       eventstream => eventstream,
+       myevent => fe_trigno, 
+       mydelay => (x"00000000"), 
+       mywidth => (x"00000175"),   -- //creates a pulse about 3us long
+       mypolarity => ('0'),
+       trigger => usr_trig_nodly
+);
 
 
   gth : gth_wiz 
