@@ -149,7 +149,7 @@ typedef struct StatusMsg {
 #define FP_LED_MSG1 12
 #define ACCUM_RESET_MSG1 16
 #define EVENT_SRC_SEL_MSG1 20  //0=internal, 1=EVR
-
+#define GTX_RESET_MSG1 24  //0=internal, 1=EVR
 
 /*
 #define SOFT_TRIG_MSG1 0

@@ -274,11 +274,15 @@ reconnect:
             	reset_accum(MsgData);
             	break;
 
-
             case EVENT_SRC_SEL_MSG1:
               	xil_printf("Setting Event Source:   Value=%d\r\n",MsgData);
               	Xil_Out32(XPAR_M_AXI_BASEADDR + EVENT_SRC_SEL_REG, MsgData);
               	break;
+
+            case GTX_RESET_MSG1:
+               	xil_printf("Resetting GTX links:   Value=%d\r\n",MsgData);
+               	Xil_Out32(XPAR_M_AXI_BASEADDR + EVR_RST_REG, MsgData);
+               	break;
 
 
             default:
